@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Result Portal</title>
-
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
@@ -17,19 +16,17 @@
             <h1>Student Result Portal</h1>
             <p>Search your roll number to view detailed performance & ranking</p>
 
-            <form class="search-box" onsubmit="event.preventDefault(); handleSearch();">
+            <div class="search-box">
                 <input type="text" id="rollInput" placeholder="Enter Roll Number">
-                <button type="submit">Search</button>
-            </form>
+                <button onclick="handleSearch()">Search</button>
+            </div>
         </header>
 
         <main id="resultDisplay" class="results" style="display:none">
-
             <section class="card student-card">
                 <div class="student-info">
                     <h2 id="studentName"></h2>
                     <span id="studentRoll"></span>
-
                     <div class="header-stat">
                         <small>TOTAL AGGREGATE</small>
                         <div class="stat-value">
@@ -54,7 +51,6 @@
                 <h3>Students Ranked Higher</h3>
                 <div id="higherRankersList" class="ranker-list"></div>
             </section>
-
         </main>
     </div>
 

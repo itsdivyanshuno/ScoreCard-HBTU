@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Result Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="page">
+    <header class="top-section">
+        <h1>Student Result Portal</h1>
+        <p>Search your roll number to view detailed performance & ranking</p>
+
+        <div class="search-box">
+            <input type="text" id="rollInput" placeholder="Enter Roll Number">
+            <button onclick="handleSearch()">Search</button>
+        </div>
+    </header>
+
+    <main id="resultDisplay" class="results" style="display:none">
+        <section class="card student-card">
+            <div class="student-info">
+                <h2 id="studentName"></h2>
+                <span id="studentRoll"></span>
+                <div class="header-stat">
+                    <small>TOTAL AGGREGATE</small>
+                    <div class="stat-value">
+                        <span id="totalMarks"></span>
+                        <span id="maxMarks" class="max-light"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rank-circle">
+                <span>Rank</span>
+                <strong id="studentRank"></strong>
+            </div>
+        </section>
+
+        <section>
+            <h3 class="section-title">Subject-wise Performance</h3>
+            <div id="subjectGrid" class="subjects-grid"></div>
+        </section>
+
+        <section class="card">
+            <h3>Students Ranked Higher</h3>
+            <div id="higherRankersList" class="ranker-list"></div>
+        </section>
+    </main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

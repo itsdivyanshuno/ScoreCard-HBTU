@@ -173,7 +173,7 @@ const ICE = {
 };
 
 /*************************
- * MERGE + RANK LOGIC
+ * MERGE + PROCESS
  *************************/
 const rolls = new Set([...Object.keys(ICS), ...Object.keys(ICE)]);
 
@@ -181,13 +181,11 @@ const processedData = [...rolls].map(roll => {
     const ics = ICS[roll];
     const ice = ICE[roll];
 
-    const make = s =>
-        s ? { ...s, total: s.m1 + s.m2 + s.end }
-            : { m1: "NA", m2: "NA", end: "NA", total: 0 };
-
     const subjects = {
-        ICS: make(ics),
-        ICE: make(ice)
+        ICS: ics ? { ...ics, total: ics.m1 + ics.m2 + ics.end }
+            : { m1: "NA", m2: "NA", end: "NA", total: 0 },
+        ICE: ice ? { ...ice, total: ice.m1 + ice.m2 + ice.end }
+            : { m1: "NA", m2: "NA", end: "NA", total: 0 }
     };
 
     const aggregate = subjects.ICS.total + subjects.ICE.total;
@@ -196,10 +194,14 @@ const processedData = [...rolls].map(roll => {
         roll,
         name: ics?.name || "NA",
         subjects,
-        aggregate
+        aggregate,
+        percentage: ((aggregate / 160) * 100).toFixed(2)
     };
 });
 
+/*************************
+ * RANKING (TIE SAFE)
+ *************************/
 const rankedData = processedData
     .sort((a, b) => b.aggregate - a.aggregate)
     .map(s => ({
@@ -233,12 +235,17 @@ function handleSearch() {
 
 function displayResults(s) {
     document.getElementById("resultDisplay").style.display = "block";
+
     document.getElementById("studentName").innerText = s.name;
     document.getElementById("studentRoll").innerText = `Roll No: ${s.roll}`;
-    document.getElementById("studentRank").innerText = s.rank === 1 ? "1 🏆" : s.rank;
+
+    document.getElementById("studentRank").innerText =
+        s.rank === 1 ? "1 🏆" : s.rank;
+
     document.getElementById("totalMarks").innerText = s.aggregate;
     document.getElementById("maxMarks").innerText = " / 160";
 
+    /* SUBJECT GRID */
     const grid = document.getElementById("subjectGrid");
     grid.innerHTML = "";
 
@@ -247,27 +254,38 @@ function displayResults(s) {
         const stats = getSubjectStats(s.roll, sub);
 
         grid.innerHTML += `
-        <div class="subject-card">
-            <div class="subject-header">
-                <h4>${sub}</h4>
-                <div class="badge-group">
-                    ${stats.isTopper ? `<span class="topper-badge">🏆 TOPPER</span>` : ""}
-                    <span class="sub-rank">Rank #${stats.rank}</span>
+            <div class="subject-card">
+                <div class="subject-header">
+                    <h4>${sub}</h4>
+                    <div class="badge-group">
+                        ${stats.isTopper ? `<span class="topper-badge">🏆 TOPPER</span>` : ""}
+                        <span class="sub-rank">Rank #${stats.rank}</span>
+                    </div>
                 </div>
+
+                <div class="row"><span>Mid Sem 1</span><span>${m.m1}</span></div>
+                <div class="row"><span>Mid Sem 2</span><span>${m.m2}</span></div>
+                <div class="row"><span>End Sem</span><span>${m.end}</span></div>
+                <div class="row total"><span>Total</span><span>${m.total} / 80</span></div>
             </div>
-            <div class="row"><span>Mid Sem 1</span><span>${m.m1}</span></div>
-            <div class="row"><span>Mid Sem 2</span><span>${m.m2}</span></div>
-            <div class="row"><span>End Sem</span><span>${m.end}</span></div>
-            <div class="row total"><span>Total</span><span>${m.total} / 80</span></div>
-        </div>`;
+        `;
     }
 
+    /* HIGHER RANKERS */
     const higherList = document.getElementById("higherRankersList");
     const higher = rankedData.filter(x => x.rank < s.rank);
 
     higherList.innerHTML = higher.length
-        ? higher.map(st => `<span class="badge">${st.name}</span>`).join("")
+        ? higher.map(st =>
+            `<span class="badge">${st.name}</span>`
+        ).join("")
         : `<span class="badge" style="border-color:var(--accent);color:var(--accent)">
             You are Rank 1 🎉
           </span>`;
 }
+
+
+document.getElementById("rollInput")
+    .addEventListener("keydown", e => {
+        if (e.key === "Enter") handleSearch();
+    });

@@ -3,7 +3,8 @@
  *************************/
 const SUBJECTS = {
     ICS: { max: 80 },
-    ICE: { max: 80 }
+    ICE: { max: 80 },
+    IET: { max: 50 }
 };
 
 /*************************
@@ -173,29 +174,121 @@ const ICE = {
 };
 
 /*************************
+ * IET MARKS (MID SEM = 0, 0)
+ *************************/
+const IET = {
+    "230108017": { m1: 0, m2: 0, end: 5 },
+    "250108001": { m1: 0, m2: 0, end: 42 },
+    "250108002": { m1: 0, m2: 0, end: 35 },
+    "250108003": { m1: 0, m2: 0, end: 44 },
+    "250108004": { m1: 0, m2: 0, end: 30 },
+    "250108005": { m1: 0, m2: 0, end: 38 },
+    "250108006": { m1: 0, m2: 0, end: 44 },
+    "250108007": { m1: 0, m2: 0, end: 35 },
+    "250108008": { m1: 0, m2: 0, end: 38 },
+    "250108009": { m1: 0, m2: 0, end: 31 },
+    "250108010": { m1: 0, m2: 0, end: 31 },
+    "250108011": { m1: 0, m2: 0, end: 34 },
+    "250108012": { m1: 0, m2: 0, end: 43 },
+    "250108013": { m1: 0, m2: 0, end: 19 },
+    "250108014": { m1: 0, m2: 0, end: 37 },
+    "250108015": { m1: 0, m2: 0, end: 25 },
+    "250108016": { m1: 0, m2: 0, end: 23 },
+    "250108017": { m1: 0, m2: 0, end: 18 },
+    "250108018": { m1: 0, m2: 0, end: 29 },
+    "250108019": { m1: 0, m2: 0, end: 42 },
+    "250108020": { m1: 0, m2: 0, end: 41 },
+    "250108021": { m1: 0, m2: 0, end: 38 },
+    "250108022": { m1: 0, m2: 0, end: 38 },
+    "250108025": { m1: 0, m2: 0, end: 27 },
+    "250108026": { m1: 0, m2: 0, end: 41 },
+    "250108027": { m1: 0, m2: 0, end: 28 },
+    "250108028": { m1: 0, m2: 0, end: 25 },
+    "250108029": { m1: 0, m2: 0, end: 26 },
+    "250108030": { m1: 0, m2: 0, end: 32 },
+    "250108031": { m1: 0, m2: 0, end: 40 },
+    "250108032": { m1: 0, m2: 0, end: 32 },
+    "250108033": { m1: 0, m2: 0, end: 47 },
+    "250108035": { m1: 0, m2: 0, end: 42 },
+    "250108036": { m1: 0, m2: 0, end: 14 },
+    "250108037": { m1: 0, m2: 0, end: 38 },
+    "250108038": { m1: 0, m2: 0, end: 26 },
+    "250108039": { m1: 0, m2: 0, end: 46 },
+    "250108040": { m1: 0, m2: 0, end: 37 },
+    "250108041": { m1: 0, m2: 0, end: 40 },
+    "250108042": { m1: 0, m2: 0, end: 41 },
+    "250108043": { m1: 0, m2: 0, end: 28 },
+    "250108045": { m1: 0, m2: 0, end: 36 },
+    "250108046": { m1: 0, m2: 0, end: 27 },
+    "250108047": { m1: 0, m2: 0, end: 8 },
+    "250108048": { m1: 0, m2: 0, end: 43 },
+    "250108049": { m1: 0, m2: 0, end: 22 },
+    "250108050": { m1: 0, m2: 0, end: 34 },
+    "250108051": { m1: 0, m2: 0, end: 38 },
+    "250108052": { m1: 0, m2: 0, end: 20 },
+    "250108053": { m1: 0, m2: 0, end: 33 },
+    "250108054": { m1: 0, m2: 0, end: 36 },
+    "250108055": { m1: 0, m2: 0, end: 38 },
+    "250108056": { m1: 0, m2: 0, end: 34 },
+    "250108057": { m1: 0, m2: 0, end: 8 },
+    "250108059": { m1: 0, m2: 0, end: 34 },
+    "250108060": { m1: 0, m2: 0, end: 41 },
+    "250108061": { m1: 0, m2: 0, end: 22 },
+    "250108062": { m1: 0, m2: 0, end: 32 },
+    "250108063": { m1: 0, m2: 0, end: 40 },
+    "250108064": { m1: 0, m2: 0, end: 38 },
+    "250108065": { m1: 0, m2: 0, end: 47 },
+    "250108066": { m1: 0, m2: 0, end: 42 },
+    "250108067": { m1: 0, m2: 0, end: 33 },
+    "250108068": { m1: 0, m2: 0, end: 36 },
+    "250108069": { m1: 0, m2: 0, end: 29 },
+    "250108070": { m1: 0, m2: 0, end: 43 },
+    "250108071": { m1: 0, m2: 0, end: 24 },
+    "250108073": { m1: 0, m2: 0, end: 41 },
+    "250108074": { m1: 0, m2: 0, end: 37 },
+    "250108075": { m1: 0, m2: 0, end: 23 },
+    "250108076": { m1: 0, m2: 0, end: 20 },
+    "250108077": { m1: 0, m2: 0, end: 42 },
+    "250108078": { m1: 0, m2: 0, end: 27 },
+    "250108079": { m1: 0, m2: 0, end: 46 },
+    "250108080": { m1: 0, m2: 0, end: 16 },
+    "250108081": { m1: 0, m2: 0, end: 36 },
+    "250108082": { m1: 0, m2: 0, end: 34 }
+};
+
+/*************************
  * MERGE + PROCESS
  *************************/
-const rolls = new Set([...Object.keys(ICS), ...Object.keys(ICE)]);
+const SUBJECT_DATA = { ICS, ICE, IET };
+
+const rolls = new Set(
+    Object.values(SUBJECT_DATA).flatMap(obj => Object.keys(obj))
+);
+
+const MAX_TOTAL = Object.values(SUBJECTS)
+    .reduce((s, x) => s + x.max, 0);
 
 const processedData = [...rolls].map(roll => {
-    const ics = ICS[roll];
-    const ice = ICE[roll];
+    const subjects = {};
+    let aggregate = 0;
 
-    const subjects = {
-        ICS: ics ? { ...ics, total: ics.m1 + ics.m2 + ics.end }
-            : { m1: "NA", m2: "NA", end: "NA", total: 0 },
-        ICE: ice ? { ...ice, total: ice.m1 + ice.m2 + ice.end }
-            : { m1: "NA", m2: "NA", end: "NA", total: 0 }
-    };
+    for (let sub in SUBJECT_DATA) {
+        const d = SUBJECT_DATA[sub][roll];
+        const total = d ? d.m1 + d.m2 + d.end : 0;
 
-    const aggregate = subjects.ICS.total + subjects.ICE.total;
+        subjects[sub] = d
+            ? { ...d, total }
+            : { m1: "NA", m2: "NA", end: "NA", total: 0 };
+
+        aggregate += total;
+    }
 
     return {
         roll,
-        name: ics?.name || "NA",
+        name: ICS[roll]?.name || "NA",
         subjects,
         aggregate,
-        percentage: ((aggregate / 160) * 100).toFixed(2)
+        percentage: ((aggregate / MAX_TOTAL) * 100).toFixed(2)
     };
 });
 
@@ -238,14 +331,10 @@ function displayResults(s) {
 
     document.getElementById("studentName").innerText = s.name;
     document.getElementById("studentRoll").innerText = `Roll No: ${s.roll}`;
-
-    document.getElementById("studentRank").innerText =
-        s.rank === 1 ? "1 🏆" : s.rank;
-
+    document.getElementById("studentRank").innerText = s.rank === 1 ? "1 🏆" : s.rank;
     document.getElementById("totalMarks").innerText = s.aggregate;
-    document.getElementById("maxMarks").innerText = " / 160";
+    document.getElementById("maxMarks").innerText = ` / ${MAX_TOTAL}`;
 
-    /* SUBJECT GRID */
     const grid = document.getElementById("subjectGrid");
     grid.innerHTML = "";
 
@@ -262,28 +351,23 @@ function displayResults(s) {
                         <span class="sub-rank">Rank #${stats.rank}</span>
                     </div>
                 </div>
-
                 <div class="row"><span>Mid Sem 1</span><span>${m.m1}</span></div>
                 <div class="row"><span>Mid Sem 2</span><span>${m.m2}</span></div>
                 <div class="row"><span>End Sem</span><span>${m.end}</span></div>
-                <div class="row total"><span>Total</span><span>${m.total} / 80</span></div>
+                <div class="row total"><span>Total</span><span>${m.total} / ${SUBJECTS[sub].max}</span></div>
             </div>
         `;
     }
 
-    /* HIGHER RANKERS */
     const higherList = document.getElementById("higherRankersList");
     const higher = rankedData.filter(x => x.rank < s.rank);
 
     higherList.innerHTML = higher.length
-        ? higher.map(st =>
-            `<span class="badge">${st.name}</span>`
-        ).join("")
+        ? higher.map(st => `<span class="badge">${st.name}</span>`).join("")
         : `<span class="badge" style="border-color:var(--accent);color:var(--accent)">
             You are Rank 1 🎉
           </span>`;
 }
-
 
 document.getElementById("rollInput")
     .addEventListener("keydown", e => {

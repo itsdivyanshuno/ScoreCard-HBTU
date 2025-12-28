@@ -181,7 +181,7 @@ const ICE = {
 const IET = {
     "230108017": { m1: 0, m2: 0, end: 5 },
     "250108001": { m1: 0, m2: 0, end: 42 },
-    "250108002": { m1: 0, m2: 0, end: 35 },
+    "250108002": { m1: 0, m2: 0, end: 39 },
     "250108003": { m1: 0, m2: 0, end: 44 },
     "250108004": { m1: 0, m2: 0, end: 30 },
     "250108005": { m1: 0, m2: 0, end: 38 },
@@ -459,4 +459,5 @@ document.getElementById("rollInput")
     .addEventListener("keydown", e => {
         if (e.key === "Enter") handleSearch();
     });
+
 

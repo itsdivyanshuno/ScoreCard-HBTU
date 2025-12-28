@@ -200,7 +200,7 @@ const IET = {
     "250108018": { m1: 0, m2: 0, end: 29 },
     "250108019": { m1: 0, m2: 0, end: 42 },
     "250108020": { m1: 0, m2: 0, end: 41 },
-    "250108021": { m1: 0, m2: 0, end: 38 },
+    "250108021": { m1: 0, m2: 0, end: 40 },
     "250108022": { m1: 0, m2: 0, end: 38 },
     "250108025": { m1: 0, m2: 0, end: 27 },
     "250108026": { m1: 0, m2: 0, end: 41 },
@@ -459,3 +459,4 @@ document.getElementById("rollInput")
     .addEventListener("keydown", e => {
         if (e.key === "Enter") handleSearch();
     });
+

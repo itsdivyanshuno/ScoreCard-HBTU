@@ -1,12 +1,11 @@
 /*************************
- * CONFIG
+ * CONFIG (DO NOT CHANGE)
  *************************/
 const SUBJECTS = {
-    ICS: { max: 80 }, // Computer Science
-    ICE: { max: 80 }, // Civil Engineering
-    IET: { max: 50 }, // Electronics
-    EC: { max: 80 }   // Engineering Chemistry
-
+    ICS: { max: 100 },
+    ICE: { max: 100 },
+    IET: { max: 100 },
+    EC: { max: 100 }
 };
 
 /*************************
@@ -179,84 +178,91 @@ const ICE = {
  * IET MARKS (MID SEM = 0, 0)
  *************************/
 const IET = {
-    "230108017": { m1: 0, m2: 0, end: 5 },
-    "250108001": { m1: 0, m2: 0, end: 42 },
-    "250108002": { m1: 0, m2: 0, end: 39 },
-    "250108003": { m1: 0, m2: 0, end: 44 },
-    "250108004": { m1: 0, m2: 0, end: 30 },
-    "250108005": { m1: 0, m2: 0, end: 38 },
-    "250108006": { m1: 0, m2: 0, end: 44 },
-    "250108007": { m1: 0, m2: 0, end: 35 },
-    "250108008": { m1: 0, m2: 0, end: 38 },
-    "250108009": { m1: 0, m2: 0, end: 31 },
-    "250108010": { m1: 0, m2: 0, end: 31 },
-    "250108011": { m1: 0, m2: 0, end: 34 },
-    "250108012": { m1: 0, m2: 0, end: 43 },
-    "250108013": { m1: 0, m2: 0, end: 19 },
-    "250108014": { m1: 0, m2: 0, end: 37 },
-    "250108015": { m1: 0, m2: 0, end: 25 },
-    "250108016": { m1: 0, m2: 0, end: 23 },
-    "250108017": { m1: 0, m2: 0, end: 18 },
-    "250108018": { m1: 0, m2: 0, end: 29 },
-    "250108019": { m1: 0, m2: 0, end: 42 },
-    "250108020": { m1: 0, m2: 0, end: 41 },
-    "250108021": { m1: 0, m2: 0, end: 40 },
-    "250108022": { m1: 0, m2: 0, end: 38 },
-    "250108025": { m1: 0, m2: 0, end: 27 },
-    "250108026": { m1: 0, m2: 0, end: 41 },
-    "250108027": { m1: 0, m2: 0, end: 28 },
-    "250108028": { m1: 0, m2: 0, end: 25 },
-    "250108029": { m1: 0, m2: 0, end: 26 },
-    "250108030": { m1: 0, m2: 0, end: 42 },
-    "250108031": { m1: 0, m2: 0, end: 40 },
-    "250108032": { m1: 0, m2: 0, end: 32 },
-    "250108033": { m1: 0, m2: 0, end: 47 },
-    "250108035": { m1: 0, m2: 0, end: 42 },
-    "250108036": { m1: 0, m2: 0, end: 14 },
-    "250108037": { m1: 0, m2: 0, end: 38 },
-    "250108038": { m1: 0, m2: 0, end: 26 },
-    "250108039": { m1: 0, m2: 0, end: 46 },
-    "250108040": { m1: 0, m2: 0, end: 37 },
-    "250108041": { m1: 0, m2: 0, end: 40 },
-    "250108042": { m1: 0, m2: 0, end: 41 },
-    "250108043": { m1: 0, m2: 0, end: 28 },
-    "250108045": { m1: 0, m2: 0, end: 36 },
-    "250108046": { m1: 0, m2: 0, end: 27 },
-    "250108047": { m1: 0, m2: 0, end: 8 },
-    "250108048": { m1: 0, m2: 0, end: 43 },
-    "250108049": { m1: 0, m2: 0, end: 22 },
-    "250108050": { m1: 0, m2: 0, end: 34 },
-    "250108051": { m1: 0, m2: 0, end: 38 },
-    "250108052": { m1: 0, m2: 0, end: 20 },
-    "250108053": { m1: 0, m2: 0, end: 33 },
-    "250108054": { m1: 0, m2: 0, end: 36 },
-    "250108055": { m1: 0, m2: 0, end: 38 },
-    "250108056": { m1: 0, m2: 0, end: 34 },
-    "250108057": { m1: 0, m2: 0, end: 8 },
-    "250108059": { m1: 0, m2: 0, end: 34 },
-    "250108060": { m1: 0, m2: 0, end: 41 },
-    "250108061": { m1: 0, m2: 0, end: 22 },
-    "250108062": { m1: 0, m2: 0, end: 32 },
-    "250108063": { m1: 0, m2: 0, end: 40 },
-    "250108064": { m1: 0, m2: 0, end: 38 },
-    "250108065": { m1: 0, m2: 0, end: 47 },
-    "250108066": { m1: 0, m2: 0, end: 42 },
-    "250108067": { m1: 0, m2: 0, end: 33 },
-    "250108068": { m1: 0, m2: 0, end: 36 },
-    "250108069": { m1: 0, m2: 0, end: 29 },
-    "250108070": { m1: 0, m2: 0, end: 43 },
-    "250108071": { m1: 0, m2: 0, end: 24 },
-    "250108073": { m1: 0, m2: 0, end: 41 },
-    "250108074": { m1: 0, m2: 0, end: 37 },
-    "250108075": { m1: 0, m2: 0, end: 23 },
-    "250108076": { m1: 0, m2: 0, end: 20 },
-    "250108077": { m1: 0, m2: 0, end: 42 },
-    "250108078": { m1: 0, m2: 0, end: 27 },
-    "250108079": { m1: 0, m2: 0, end: 46 },
-    "250108080": { m1: 0, m2: 0, end: 16 },
-    "250108081": { m1: 0, m2: 0, end: 36 },
-    "250108082": { m1: 0, m2: 0, end: 34 }
+    "230108017": { m1: 5, m2: 6, end: 5, ia: 14 },
+
+    "250108001": { m1: 12, m2: 14, end: 42, ia: 19 },
+    "250108002": { m1: 14, m2: 15, end: 39, ia: 19 },
+    "250108003": { m1: 14, m2: 14, end: 44, ia: 19 },
+    "250108004": { m1: 11, m2: 12, end: 30, ia: 18 },
+    "250108005": { m1: 10, m2: 14, end: 38, ia: 19 },
+    "250108006": { m1: 12, m2: 15, end: 44, ia: 19 },
+    "250108007": { m1: 12, m2: 15, end: 35, ia: 19 },
+    "250108008": { m1: 15, m2: 14, end: 38, ia: 19 },
+    "250108009": { m1: 11, m2: 14, end: 31, ia: 17 },
+    "250108010": { m1: 9, m2: 10, end: 31, ia: 19 },
+    "250108011": { m1: 10, m2: 14, end: 34, ia: 18 },
+    "250108012": { m1: 12, m2: 14, end: 43, ia: 19 },
+    "250108013": { m1: 15, m2: 6, end: 19, ia: 18 },
+    "250108014": { m1: 12, m2: 11, end: 37, ia: 19 },
+    "250108015": { m1: 14, m2: 14, end: 25, ia: 19 },
+    "250108016": { m1: 10, m2: 10, end: 23, ia: 18 },
+    "250108017": { m1: 5, m2: 6, end: 18, ia: 18 },
+    "250108018": { m1: 12, m2: 9, end: 29, ia: 19 },
+    "250108019": { m1: 14, m2: 12, end: 42, ia: 17 },
+    "250108020": { m1: 13, m2: 11, end: 41, ia: 18 },
+    "250108021": { m1: 12, m2: 13, end: 40, ia: 19 },
+    "250108022": { m1: 13, m2: 10, end: 38, ia: 19 },
+
+    "250108025": { m1: 13, m2: 11, end: 27, ia: 18 },
+    "250108026": { m1: 13, m2: 11, end: 41, ia: 19 },
+    "250108027": { m1: 12, m2: 10, end: 28, ia: 19 },
+    "250108028": { m1: 10, m2: 8, end: 25, ia: 17 },
+    "250108029": { m1: 12, m2: 8, end: 26, ia: 17 },
+    "250108030": { m1: 12, m2: 13, end: 42, ia: 19 },
+    "250108031": { m1: 14, m2: 11, end: 40, ia: 19 },
+    "250108032": { m1: 12, m2: 13, end: 32, ia: 17 },
+    "250108033": { m1: 12, m2: 11, end: 47, ia: 19 },
+
+    "250108035": { m1: 14, m2: 14, end: 42, ia: 19 },
+    "250108036": { m1: 9, m2: 4, end: 15, ia: 18 },
+    "250108037": { m1: 13, m2: 10, end: 38, ia: 19 },
+    "250108038": { m1: 11, m2: 7, end: 26, ia: 19 },
+    "250108039": { m1: 13, m2: 14, end: 46, ia: 18 },
+    "250108040": { m1: 13, m2: 12, end: 37, ia: 19 },
+    "250108041": { m1: 12, m2: 11, end: 40, ia: 19 },
+    "250108042": { m1: 12, m2: 12, end: 41, ia: 19 },
+    "250108043": { m1: 12, m2: 13, end: 28, ia: 19 },
+
+    "250108045": { m1: 13, m2: 11, end: 36, ia: 17 },
+    "250108046": { m1: 11, m2: 13, end: 27, ia: 17 },
+    "250108047": { m1: 8, m2: 8, end: 8, ia: 18 },
+    "250108048": { m1: 13, m2: 14, end: 43, ia: 18 },
+    "250108049": { m1: 10, m2: 10, end: 22, ia: 19 },
+    "250108050": { m1: 11, m2: 12, end: 34, ia: 19 },
+    "250108051": { m1: 11, m2: 14, end: 38, ia: 19 },
+    "250108052": { m1: 12, m2: 4, end: 20, ia: 18 },
+    "250108053": { m1: 9, m2: 14, end: 33, ia: 19 },
+    "250108054": { m1: 12, m2: 8, end: 36, ia: 18 },
+    "250108055": { m1: 11, m2: 12, end: 38, ia: 19 },
+    "250108056": { m1: 13, m2: 15, end: 34, ia: 19 },
+    "250108057": { m1: 3, m2: 3, end: 8, ia: 18 },
+
+    "250108059": { m1: 12, m2: 12, end: 34, ia: 18 },
+    "250108060": { m1: 13, m2: 15, end: 41, ia: 18 },
+    "250108061": { m1: 10, m2: 11, end: 22, ia: 18 },
+    "250108062": { m1: 13, m2: 11, end: 32, ia: 19 },
+    "250108063": { m1: 12, m2: 11, end: 40, ia: 18 },
+    "250108064": { m1: 13, m2: 13, end: 38, ia: 19 },
+    "250108065": { m1: 14, m2: 13, end: 47, ia: 19 },
+    "250108066": { m1: 10, m2: 12, end: 42, ia: 18 },
+    "250108067": { m1: 13, m2: 10, end: 33, ia: 19 },
+    "250108068": { m1: 11, m2: 9, end: 36, ia: 18 },
+    "250108069": { m1: 13, m2: 10, end: 29, ia: 18 },
+    "250108070": { m1: 11, m2: 15, end: 43, ia: 19 },
+
+    "250108071": { m1: 13, m2: 12, end: 24, ia: 19 },
+    "250108073": { m1: 12, m2: 14, end: 41, ia: 19 },
+    "250108074": { m1: 12, m2: 15, end: 37, ia: 19 },
+    "250108075": { m1: 12, m2: 11, end: 23, ia: 19 },
+    "250108076": { m1: 7, m2: 6, end: 20, ia: 18 },
+    "250108077": { m1: 10, m2: 13, end: 42, ia: 18 },
+    "250108078": { m1: 14, m2: 11, end: 27, ia: 18 },
+    "250108079": { m1: 10, m2: 12, end: 46, ia: 18 },
+    "250108080": { m1: 13, m2: 5, end: 16, ia: 19 },
+    "250108081": { m1: 13, m2: 13, end: 36, ia: 17 },
+    "250108082": { m1: 14, m2: 14, end: 34, ia: 19 }
 };
+
 
 /*************************
  * EC MARKS
@@ -348,30 +354,40 @@ const EC = {
 const SUBJECT_DATA = { ICS, ICE, IET, EC };
 
 const rolls = new Set(
-    Object.values(SUBJECT_DATA).flatMap(obj => Object.keys(obj))
+    Object.values(SUBJECT_DATA).flatMap(sub => Object.keys(sub))
 );
 
 const MAX_TOTAL = Object.values(SUBJECTS)
-    .reduce((s, x) => s + x.max, 0);
+    .reduce((sum, s) => sum + s.max, 0);
 
 const processedData = [...rolls].map(roll => {
-    const subjects = {};
     let aggregate = 0;
+    const subjects = {};
 
     for (let sub in SUBJECT_DATA) {
         const d = SUBJECT_DATA[sub][roll];
-        const total = d ? d.m1 + d.m2 + d.end : 0;
 
-        subjects[sub] = d
-            ? { ...d, total }
-            : { m1: "NA", m2: "NA", end: "NA", total: 0 };
+        const safe = d
+            ? {
+                m1: d.m1 ?? 0,
+                m2: d.m2 ?? 0,
+                end: d.end ?? 0,
+                ia: d.ia ?? 0
+            }
+            : { m1: "NA", m2: "NA", end: "NA", ia: "NA" };
 
+        const total =
+            typeof safe.m1 === "number"
+                ? safe.m1 + safe.m2 + safe.end + safe.ia
+                : 0;
+
+        subjects[sub] = { ...safe, total };
         aggregate += total;
     }
 
     return {
         roll,
-        name: ICS[roll]?.name || "NA",
+        name: ICS?.[roll]?.name || "NA",
         subjects,
         aggregate,
         percentage: ((aggregate / MAX_TOTAL) * 100).toFixed(2)
@@ -379,7 +395,7 @@ const processedData = [...rolls].map(roll => {
 });
 
 /*************************
- * RANKING (TIE SAFE)
+ * RANKING (TIE-SAFE)
  *************************/
 const rankedData = processedData
     .sort((a, b) => b.aggregate - a.aggregate)
@@ -389,35 +405,48 @@ const rankedData = processedData
     }));
 
 /*************************
- * SUBJECT RANK
+ * SUBJECT-WISE RANK
  *************************/
 function getSubjectStats(roll, subject) {
     const list = rankedData
-        .map(s => ({ roll: s.roll, total: s.subjects[subject].total }))
+        .map(s => ({
+            roll: s.roll,
+            total: s.subjects[subject].total
+        }))
         .sort((a, b) => b.total - a.total);
 
-    const me = list.find(s => s.roll === roll);
-    const rank = list.filter(s => s.total > me.total).length + 1;
+    const me = list.find(x => x.roll === roll);
+    const rank = list.filter(x => x.total > me.total).length + 1;
 
     return { rank, isTopper: rank === 1 };
 }
 
 /*************************
- * SEARCH & DISPLAY
+ * SEARCH HANDLER
  *************************/
 function handleSearch() {
     const roll = document.getElementById("rollInput").value.trim();
-    const s = rankedData.find(x => x.roll === roll);
-    if (!s) return alert("Roll not found");
-    displayResults(s);
+    const student = rankedData.find(s => s.roll === roll);
+
+    if (!student) {
+        alert("Roll number not found");
+        return;
+    }
+
+    displayResults(student);
 }
 
+/*************************
+ * DISPLAY RESULTS
+ *************************/
 function displayResults(s) {
     document.getElementById("resultDisplay").style.display = "block";
 
     document.getElementById("studentName").innerText = s.name;
     document.getElementById("studentRoll").innerText = `Roll No: ${s.roll}`;
-    document.getElementById("studentRank").innerText = s.rank === 1 ? "1 🏆" : s.rank;
+    document.getElementById("studentRank").innerText =
+        s.rank === 1 ? "1 🏆" : s.rank;
+
     document.getElementById("totalMarks").innerText = s.aggregate;
     document.getElementById("maxMarks").innerText = ` / ${MAX_TOTAL}`;
 
@@ -437,27 +466,34 @@ function displayResults(s) {
                         <span class="sub-rank">Rank #${stats.rank}</span>
                     </div>
                 </div>
+
                 <div class="row"><span>Mid Sem 1</span><span>${m.m1}</span></div>
                 <div class="row"><span>Mid Sem 2</span><span>${m.m2}</span></div>
                 <div class="row"><span>End Sem</span><span>${m.end}</span></div>
-                <div class="row total"><span>Total</span><span>${m.total} / ${SUBJECTS[sub].max}</span></div>
+                <div class="row"><span>Internal</span><span>${m.ia}</span></div>
+
+                <div class="row total">
+                    <span>Total</span>
+                    <span>${m.total} / ${SUBJECTS[sub].max}</span>
+                </div>
             </div>
         `;
     }
 
-    const higherList = document.getElementById("higherRankersList");
     const higher = rankedData.filter(x => x.rank < s.rank);
+    const list = document.getElementById("higherRankersList");
 
-    higherList.innerHTML = higher.length
+    list.innerHTML = higher.length
         ? higher.map(st => `<span class="badge">${st.name}</span>`).join("")
         : `<span class="badge" style="border-color:var(--accent);color:var(--accent)">
             You are Rank 1 🎉
           </span>`;
 }
 
+/*************************
+ * ENTER KEY SUPPORT
+ *************************/
 document.getElementById("rollInput")
     .addEventListener("keydown", e => {
         if (e.key === "Enter") handleSearch();
     });
-
-

@@ -70,7 +70,6 @@ async function loadAllData() {
         });
     });
 
-    // Sort by aggregate and assign ranks
     data.sort((a, b) => b.aggregate - a.aggregate);
     data.forEach((s, i) => s.rank = i + 1);
 
@@ -82,10 +81,7 @@ window.handleSearch = function () {
     const roll = document.getElementById("rollInput").value.trim();
     const s = window.rankedData.find(x => x.roll === roll);
 
-    if (!s) {
-        alert("Roll number not found");
-        return;
-    }
+    if (!s) { alert("Roll number not found"); return; }
 
     window.currentStudent = s;
     document.getElementById("resultDisplay").style.display = "block";
@@ -96,7 +92,6 @@ window.handleSearch = function () {
     document.getElementById("totalMarks").innerText = s.aggregate;
     document.getElementById("maxMarks").innerText = ` / ${MAX_TOTAL}`;
 
-    // Populate Subject-wise Performance
     const grid = document.getElementById("subjectGrid");
     grid.innerHTML = "";
 
@@ -113,14 +108,11 @@ window.handleSearch = function () {
         `;
     }
 
-    // Populate Higher Rank Students
     const list = document.getElementById("higherRankersList");
     list.innerHTML = "";
     window.rankedData
         .filter(x => x.rank < s.rank)
-        .forEach(x => {
-            list.innerHTML += `<div class="badge">#${x.name}</div>`;
-        });
+        .forEach(x => list.innerHTML += `<div class="badge">#${x.name}</div>`);
 };
 
 /* ===== Download PDF ===== */
@@ -132,7 +124,6 @@ window.downloadPDF = function () {
     const doc = new jsPDF();
     let y = 20;
 
-    // University Header
     doc.setFont("helvetica", "bold");
     doc.setFontSize(16);
     doc.text("HARCOURT BUTLER TECHNICAL UNIVERSITY, KANPUR", 105, y, { align: "center" });
@@ -146,7 +137,6 @@ window.downloadPDF = function () {
     doc.line(20, y, 190, y);
     y += 10;
 
-    // Student Details
     doc.setFont("helvetica", "normal");
     doc.setFontSize(11);
     doc.text(`Name: ${s.name}`, 20, y);
@@ -156,7 +146,6 @@ window.downloadPDF = function () {
     doc.text(`Total Marks: ${s.aggregate} / ${MAX_TOTAL}`, 130, y);
     y += 10;
 
-    // Table Header
     doc.setFont("helvetica", "bold");
     doc.text("Subject", 20, y);
     doc.text("M1", 65, y);
@@ -169,7 +158,6 @@ window.downloadPDF = function () {
     doc.line(20, y, 190, y);
     y += 6;
 
-    // Subject Rows
     doc.setFont("helvetica", "normal");
     for (let sub in s.subjects) {
         const m = s.subjects[sub];
@@ -181,13 +169,9 @@ window.downloadPDF = function () {
         doc.text(String(m.total), 155, y);
 
         y += 7;
-        if (y > 270) {
-            doc.addPage();
-            y = 20;
-        }
+        if (y > 270) { doc.addPage(); y = 20; }
     }
 
-    // Footer
     y += 10;
     doc.setLineWidth(0.3);
     doc.line(20, y, 190, y);

@@ -1,208 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>Admin Dashboard – ScoreCard</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Admin Dashboard – ScoreCard</title>
+    <link rel="stylesheet" href="style.css">
 
-<style>
-:root {
-    --bg: #f9fafb;
-    --card: #ffffff;
-    --text: #111827;
-    --border: #e5e7eb;
-    --primary: #2563eb;
-    --success: #16a34a;
-}
+    <style>
+        :root {
+            --bg: #f9fafb;
+            --card: #ffffff;
+            --text: #111827;
+            --border: #e5e7eb;
+            --primary: #2563eb;
+            --success: #16a34a;
+        }
 
-/* DARK MODE VARIABLES */
-body.dark {
-    --bg: #0f172a;
-    --card: #020617;
-    --text: #e5e7eb;
-    --border: #1e293b;
-    --primary: #3b82f6;
-    --success: #22c55e;
-}
+        /* DARK MODE VARIABLES */
+        body.dark {
+            --bg: #0f172a;
+            --card: #020617;
+            --text: #e5e7eb;
+            --border: #1e293b;
+            --primary: #3b82f6;
+            --success: #22c55e;
+        }
 
-body {
-    background: var(--bg);
-    color: var(--text);
-    transition: background 0.3s, color 0.3s;
-}
+        body {
+            background: var(--bg);
+            color: var(--text);
+            transition: background 0.3s, color 0.3s;
+        }
 
-.container {
-    max-width: 900px;
-    margin: auto;
-    padding: 30px;
-}
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 30px;
+        }
 
-.search input {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    background: var(--card);
-    color: var(--text);
-    border: 1px solid var(--border);
-}
+        .search input {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            background: var(--card);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
 
-table {
-    width: 100%;
-    background: var(--card);
-    border-collapse: collapse;
-    border-radius: 8px;
-    overflow: hidden;
-}
+        table {
+            width: 100%;
+            background: var(--card);
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+        }
 
-th, td {
-    padding: 14px;
-    border-bottom: 1px solid var(--border);
-}
+        th,
+        td {
+            padding: 14px;
+            border-bottom: 1px solid var(--border);
+        }
 
-th { background: var(--bg); }
+        th {
+            background: var(--bg);
+        }
 
-button {
-    padding: 10px 18px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-}
+        button {
+            padding: 10px 18px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+        }
 
-.edit-btn {
-    background: var(--primary);
-    color: white;
-}
+        .edit-btn {
+            background: var(--primary);
+            color: white;
+        }
 
-.primary {
-    background: var(--success);
-    color: white;
-}
+        .primary {
+            background: var(--success);
+            color: white;
+        }
 
-.secondary {
-    background: var(--border);
-    color: var(--text);
-}
+        .secondary {
+            background: var(--border);
+            color: var(--text);
+        }
 
-.toggle {
-    position: fixed;
-    top: 15px;
-    right: 20px;
-}
+        .toggle {
+            position: fixed;
+            top: 15px;
+            right: 20px;
+        }
 
-.modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.6);
-    display: none;
-    align-items: center;
-    justify-content: center;
-}
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
 
-.modal-content {
-    background: var(--card);
-    padding: 24px;
-    width: 620px;
-    border-radius: 10px;
-}
+        .modal-content {
+            background: var(--card);
+            padding: 24px;
+            width: 620px;
+            border-radius: 10px;
+        }
 
-.subject {
-    border: 1px solid var(--border);
-    padding: 14px;
-    margin-bottom: 14px;
-    border-radius: 8px;
-}
+        .subject {
+            border: 1px solid var(--border);
+            padding: 14px;
+            margin-bottom: 14px;
+            border-radius: 8px;
+        }
 
-.subject h4 {
-    display: flex;
-    justify-content: space-between;
-}
+        .subject h4 {
+            display: flex;
+            justify-content: space-between;
+        }
 
-.subject input {
-    width: 60px;
-    margin-right: 10px;
-    background: var(--bg);
-    color: var(--text);
-    border: 1px solid var(--border);
-}
+        .subject input {
+            width: 60px;
+            margin-right: 10px;
+            background: var(--bg);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
 
-.total {
-    color: var(--success);
-    font-weight: bold;
-}
-</style>
+        .total {
+            color: var(--success);
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
 
-<button class="toggle edit-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
+    <button class="toggle edit-btn" onclick="toggleTheme()">🌙 Dark Mode</button>
 
-<h2 style="text-align:center">Admin Dashboard</h2>
+    <h2 style="text-align:center">Admin Dashboard</h2>
 
-<div id="loginBox" style="text-align:center">
-    <input id="email" placeholder="Admin Email">
-    <input id="password" type="password" placeholder="Password">
-    <br><br>
-    <button class="edit-btn" onclick="login()">Login</button>
-</div>
-
-<div id="adminPanel" class="container" style="display:none">
-    <div class="search">
-        <input id="searchInput" placeholder="Search by Roll or Name" oninput="filterStudents()">
+    <!-- Login Box -->
+    <div id="loginBox" style="text-align:center">
+        <input id="email" placeholder="Admin Email">
+        <input id="password" type="password" placeholder="Password">
+        <br><br>
+        <button class="edit-btn" onclick="login()">Login</button>
     </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Roll No</th>
-                <th>Name</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody id="tableBody"></tbody>
-    </table>
-</div>
+    <!-- Admin Panel -->
+    <div id="adminPanel" class="container" style="display:none">
+        <div class="search">
+            <input id="searchInput" placeholder="Search by Roll or Name" oninput="filterStudents()">
+        </div>
 
-<div class="modal" id="editModal">
-    <div class="modal-content">
-        <h3 id="modalTitle"></h3>
-        <div id="modalBody"></div>
-        <div style="text-align:right">
-            <button class="primary" onclick="saveMarks()">Save</button>
-            <button class="secondary" onclick="closeModal()">Cancel</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>Roll No</th>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <h3 id="modalTitle"></h3>
+            <div id="modalBody"></div>
+            <div style="text-align:right">
+                <button class="primary" onclick="saveMarks()">Save</button>
+                <button class="secondary" onclick="closeModal()">Cancel</button>
+            </div>
         </div>
     </div>
-</div>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    <!-- Firebase Initialization -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyAc9qvGac9B5EsHbB8Jgt7zxSvugUoYzVc",
-  authDomain: "scorecard-hbtu.firebaseapp.com",
-  projectId: "scorecard-hbtu",
-};
+        const firebaseConfig = {
+            apiKey: "AIzaSyAc9qvGac9B5EsHbB8Jgt7zxSvugUoYzVc",
+            authDomain: "scorecard-hbtu.firebaseapp.com",
+            projectId: "scorecard-hbtu",
+        };
 
-window.app = initializeApp(firebaseConfig);
-window.db = getFirestore(app);
-window.auth = getAuth(app);
-</script>
+        window.app = initializeApp(firebaseConfig);
+        window.db = getFirestore(app);
+        window.auth = getAuth(app);
+    </script>
 
-<script type="module" src="admin.js"></script>
+    <!-- Admin JS -->
+    <script type="module" src="admin.js"></script>
 
-<script>
-function toggleTheme() {
-    document.body.classList.toggle("dark");
-    localStorage.setItem("theme",
-        document.body.classList.contains("dark") ? "dark" : "light"
-    );
-}
+    <!-- Dark Mode Toggle -->
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle("dark");
+            localStorage.setItem("theme",
+                document.body.classList.contains("dark") ? "dark" : "light"
+            );
+        }
 
-if (localStorage.getItem("theme") === "dark") {
-    document.body.classList.add("dark");
-}
-</script>
+        if (localStorage.getItem("theme") === "dark") {
+            document.body.classList.add("dark");
+        }
+    </script>
 
 </body>
+
 </html>

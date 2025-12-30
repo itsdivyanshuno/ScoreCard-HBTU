@@ -1,6 +1,6 @@
 /* =========================
    VARIABLES
-   ========================= */
+========================= */
 :root {
     --bg: #f9fafb;
     --card: #ffffff;
@@ -13,10 +13,8 @@
 
 /* =========================
    GLOBAL STYLES
-   ========================= */
-* {
-    box-sizing: border-box;
-}
+========================= */
+* { box-sizing: border-box; }
 
 body {
     margin: 0;
@@ -33,22 +31,10 @@ body {
 
 /* =========================
    HEADER & SEARCH
-   ========================= */
-.top-section {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.top-section h1 {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-bottom: 8px;
-}
-
-.top-section p {
-    color: var(--muted);
-    font-size: 1rem;
-}
+========================= */
+.top-section { text-align: center; margin-bottom: 40px; }
+.top-section h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 8px; }
+.top-section p { color: var(--muted); font-size: 1rem; }
 
 .search-box {
     margin-top: 25px;
@@ -76,13 +62,11 @@ body {
     transition: background 0.3s ease;
 }
 
-.search-box button:hover {
-    background: darkorange;
-}
+.search-box button:hover { background: darkorange; }
 
 /* =========================
    CARD BASE
-   ========================= */
+========================= */
 .card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -93,21 +77,16 @@ body {
 
 /* =========================
    STUDENT CARD
-   ========================= */
+========================= */
 .student-card {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
 }
 
-.student-info h2 {
-    margin: 0;
-    font-size: 1.8rem;
-}
+.student-info h2 { margin: 0; font-size: 1.8rem; }
 
-.header-stat {
-    margin-top: 16px;
-}
+.header-stat { margin-top: 16px; }
 
 .header-stat small {
     font-weight: 700;
@@ -130,7 +109,7 @@ body {
 
 /* =========================
    RANK SECTION
-   ========================= */
+========================= */
 .rank-section {
     display: flex;
     flex-direction: column;
@@ -150,12 +129,8 @@ body {
     margin-bottom: 10px;
 }
 
-.rank-circle strong {
-    font-size: 1.6rem;
-    color: var(--accent);
-}
+.rank-circle strong { font-size: 1.6rem; color: var(--accent); }
 
-/* Download Button */
 .download-btn {
     padding: 10px 20px;
     border-radius: 10px;
@@ -167,13 +142,11 @@ body {
     transition: background 0.3s ease;
 }
 
-.download-btn:hover {
-    background: darkorange;
-}
+.download-btn:hover { background: darkorange; }
 
 /* =========================
    SUBJECT CARDS
-   ========================= */
+========================= */
 .subjects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -203,7 +176,7 @@ body {
 
 /* =========================
    HIGHER RANK STUDENTS
-   ========================= */
+========================= */
 .ranker-list {
     display: flex;
     flex-wrap: wrap;
@@ -221,23 +194,10 @@ body {
 
 /* =========================
    RESPONSIVE DESIGN
-   ========================= */
+========================= */
 @media (max-width: 600px) {
-    .student-card {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .rank-circle {
-        margin-top: 20px;
-    }
-
-    .search-box {
-        flex-direction: column;
-    }
-
-    input {
-        width: 100%;
-    }
+    .student-card { flex-direction: column; align-items: center; text-align: center; }
+    .rank-circle { margin-top: 20px; }
+    .search-box { flex-direction: column; }
+    input { width: 100%; }
 }

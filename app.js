@@ -1,501 +1,202 @@
-/*************************
- * CONFIG (DO NOT CHANGE)
- *************************/
-const SUBJECTS = {
-    ICS: { max: 100 },
-    ICE: { max: 100 },
-    IET: { max: 100 },
-    EC: { max: 100 }
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+/* ===== Firebase Config ===== */
+const firebaseConfig = {
+    apiKey: "AIzaSyAc9qvGac9B5EsHbB8Jgt7zxSvugUoYzVc",
+    authDomain: "scorecard-hbtu.firebaseapp.com",
+    projectId: "scorecard-hbtu",
 };
 
-/*************************
- * ICS MARKS
- *************************/
-const ICS = {
-    "230108017": { name: "ARNAV RISHIT", m1: 8, m2: 3, end: 20 },
-    "250108001": { name: "ABHISHEK TIWARI", m1: 15, m2: 11, end: 41 },
-    "250108002": { name: "ADITI AWASTHI", m1: 14, m2: 7, end: 44 },
-    "250108003": { name: "ADITYA GAUTAM", m1: 14, m2: 12, end: 40 },
-    "250108004": { name: "ADITYA LODHI", m1: 12, m2: 7, end: 33 },
-    "250108005": { name: "ANKUSH", m1: 13, m2: 6, end: 35 },
-    "250108006": { name: "ANURAG KUMAR", m1: 14, m2: 10, end: 40 },
-    "250108007": { name: "APARNA CHAURASIA", m1: 9, m2: 4, end: 27 },
-    "250108008": { name: "ARYAN BHUSHAN", m1: 13, m2: 6, end: 31 },
-    "250108009": { name: "ARYAN NIGAM", m1: 7, m2: 3, end: 29 },
-    "250108010": { name: "ARYAN SINGH", m1: 11, m2: 8, end: 33 },
-    "250108011": { name: "ARYAN TIWARI", m1: 12, m2: 9, end: 46 },
-    "250108012": { name: "ASHANK SINGH", m1: 12, m2: 7, end: 35 },
-    "250108013": { name: "ATHARVA AVICHAL", m1: 11, m2: 5, end: 28 },
-    "250108014": { name: "ATISHAY JAIN", m1: 12, m2: 9, end: 29 },
-    "250108015": { name: "AYUSH SHAKYA", m1: 6, m2: 5, end: 21 },
-    "250108016": { name: "AYUSH SINGH", m1: 11, m2: 8, end: 30 },
-    "250108017": { name: "BURHAN FAROOQ", m1: 5, m2: 6, end: 35 },
-    "250108018": { name: "DAKSH THAKAR", m1: 10, m2: 4, end: 25 },
-    "250108019": { name: "DEV PRATAP", m1: 15, m2: 9, end: 36 },
-    "250108020": { name: "DHRUV GUPTA", m1: 12, m2: 3, end: 34 },
-    "250108021": { name: "DIVYANSH SHUKLA", m1: 13, m2: 11, end: 44 },
-    "250108022": { name: "GOVIND MOHAN AWASTHI", m1: 11, m2: 6, end: 35 },
-    "250108025": { name: "ISHAAN VERMA", m1: 12, m2: 11, end: 36 },
-    "250108026": { name: "ISHIKA JAISWAL", m1: 12, m2: 10, end: 40 },
-    "250108027": { name: "ISHITA", m1: 11, m2: 7, end: 31 },
-    "250108028": { name: "KARAN KUMAR", m1: 7, m2: 4, end: 29 },
-    "250108029": { name: "KARTIKEY MAURYA", m1: 12, m2: 2, end: 20 },
-    "250108030": { name: "KESHAV YADAV", m1: 13, m2: 6, end: 33 },
-    "250108031": { name: "KRITIKA ARORA", m1: 13, m2: 11, end: 31 },
-    "250108032": { name: "LAKSHYA AGARWAL", m1: 12, m2: 8, end: 33 },
-    "250108033": { name: "MAANYA KHANNA", m1: 12, m2: 13, end: 44 },
-    "250108035": { name: "MANISH KASHYAP", m1: 13, m2: 10, end: 32 },
-    "250108036": { name: "MANISH KUMAR", m1: 8, m2: 4, end: 20 },
-    "250108037": { name: "MILAN CHADGAL", m1: 13, m2: 6, end: 38 },
-    "250108038": { name: "NAINA KANNAUJIA", m1: 7, m2: 6, end: 30 },
-    "250108039": { name: "NAMAN SAXENA", m1: 13, m2: 10, end: 40 },
-    "250108040": { name: "NEHAL TRIPATHI", m1: 12, m2: 7, end: 39 },
-    "250108041": { name: "PANKAJ KUMAR", m1: 10, m2: 6, end: 39 },
-    "250108042": { name: "PIYUSH YADAV", m1: 12, m2: 6, end: 31 },
-    "250108043": { name: "PRAGYA SINGH", m1: 11, m2: 4, end: 33 },
-    "250108045": { name: "PRANJAL TRIPATHI", m1: 12, m2: 4, end: 32 },
-    "250108046": { name: "PRASHANT", m1: 11, m2: 3, end: 24 },
-    "250108047": { name: "PRASHANT KUMAR", m1: 6, m2: 3, end: 22 },
-    "250108048": { name: "PREM SHAH", m1: 14, m2: 10, end: 46 },
-    "250108049": { name: "PRINCE RANJAN", m1: 12, m2: 4, end: 31 },
-    "250108050": { name: "PRIYANSHU CHAUDHARY", m1: 12, m2: 8, end: 37 },
-    "250108051": { name: "PRIYANSHU CHAURASIA", m1: 11, m2: 9, end: 37 },
-    "250108052": { name: "PURUSOTTAM RAI", m1: 7, m2: 4, end: 25 },
-    "250108053": { name: "RAKSHIT PANDEY", m1: 13, m2: 6, end: 34 },
-    "250108054": { name: "RISHIRAJ NIRMAL", m1: 10, m2: 5, end: 26 },
-    "250108055": { name: "RISHIT JAIN", m1: 9, m2: 7, end: 36 },
-    "250108056": { name: "ROHIT MAURYA", m1: 14, m2: 7, end: 36 },
-    "250108057": { name: "SAMARTH BAJPAI", m1: 6, m2: 4, end: 20 },
-    "250108059": { name: "SARTHAK PANDEY", m1: 11, m2: 8, end: 36 },
-    "250108060": { name: "SATYAM GUPTA", m1: 11, m2: 11, end: 36 },
-    "250108061": { name: "SHAMLI BHARGAV", m1: 9, m2: 7, end: 29 },
-    "250108062": { name: "SHIVAM KUMAR VERMA", m1: 12, m2: 5, end: 30 },
-    "250108063": { name: "SHIVANSH BAJPAI", m1: 12, m2: 9, end: 34 },
-    "250108064": { name: "SHREYA GUPTA", m1: 14, m2: 5, end: 33 },
-    "250108065": { name: "SHRUTI SINGH", m1: 14, m2: 8, end: 42 },
-    "250108066": { name: "SIDDHANT THAWRANI", m1: 12, m2: 13, end: 36 },
-    "250108067": { name: "SMIKSHA SHARMA", m1: 13, m2: 6, end: 36 },
-    "250108068": { name: "SMRITA VAISHYA", m1: 10, m2: 9, end: 34 },
-    "250108069": { name: "SUHANI GUPTA", m1: 8, m2: 8, end: 30 },
-    "250108070": { name: "TANISH SRIVASTAVA", m1: 11, m2: 10, end: 36 },
-    "250108071": { name: "TANMAY DWIVEDI", m1: 12, m2: 7, end: 33 },
-    "250108073": { name: "UTKARSH KUMAR MADDHESHIYA", m1: 10, m2: 6, end: 34 },
-    "250108074": { name: "UTKARSH MISHRA", m1: 12, m2: 7, end: 38 },
-    "250108075": { name: "UTKARSH RAJ", m1: 13, m2: 6, end: 32 },
-    "250108076": { name: "VAIBHAV KUMAR", m1: 10, m2: 4, end: 29 },
-    "250108077": { name: "VAIBHAV SINGH", m1: 11, m2: 5, end: 28 },
-    "250108078": { name: "VAIBHAVI VERMA", m1: 14, m2: 9, end: 33 },
-    "250108079": { name: "VANSH GUPTA", m1: 14, m2: 6, end: 29 },
-    "250108080": { name: "VARDHAN SINGH VAADVAAN", m1: 10, m2: 8, end: 26 },
-    "250108081": { name: "VASU RATHOUR", m1: 14, m2: 13, end: 34 },
-    "250108082": { name: "VEDIKA YADAV", m1: 14, m2: 6, end: 35 }
-};
+window.app = initializeApp(firebaseConfig);
+window.db = getFirestore(app);
 
-/*************************
- * ICE MARKS
- *************************/
-const ICE = {
-    "230108017": { m1: 5, m2: 8, end: 10 },
-    "250108001": { m1: 13, m2: 12, end: 42 },
-    "250108002": { m1: 14, m2: 13, end: 43 },
-    "250108003": { m1: 11, m2: 15, end: 41 },
-    "250108004": { m1: 6, m2: 6, end: 21 },
-    "250108005": { m1: 10, m2: 10, end: 43 },
-    "250108006": { m1: 10, m2: 11, end: 36 },
-    "250108007": { m1: 6, m2: 8, end: 26 },
-    "250108008": { m1: 10, m2: 9, end: 37 },
-    "250108009": { m1: 6, m2: 7, end: 23 },
-    "250108010": { m1: 9, m2: 10, end: 32 },
-    "250108011": { m1: 8, m2: 10, end: 24 },
-    "250108012": { m1: 6, m2: 11, end: 37 },
-    "250108013": { m1: 8, m2: 6, end: 18 },
-    "250108014": { m1: 10, m2: 10, end: 30 },
-    "250108015": { m1: 5, m2: 9, end: 16 },
-    "250108016": { m1: 6, m2: 8, end: 18 },
-    "250108017": { m1: 3, m2: 7, end: 22 },
-    "250108018": { m1: 8, m2: 9, end: 28 },
-    "250108019": { m1: 8, m2: 11, end: 32 },
-    "250108020": { m1: 9, m2: 12, end: 37 },
-    "250108021": { m1: 9, m2: 9, end: 38 },
-    "250108022": { m1: 9, m2: 8, end: 25 },
-    "250108025": { m1: 12, m2: 9, end: 26 },
-    "250108026": { m1: 13, m2: 12, end: 36 },
-    "250108027": { m1: 6, m2: 9, end: 30 },
-    "250108028": { m1: 6, m2: 8, end: 24 },
-    "250108029": { m1: 8, m2: 9, end: 23 },
-    "250108030": { m1: 9, m2: 10, end: 28 },
-    "250108031": { m1: 7, m2: 12, end: 32 },
-    "250108032": { m1: 12, m2: 10, end: 29 },
-    "250108033": { m1: 11, m2: 14, end: 38 },
-    "250108035": { m1: 12, m2: 12, end: 35 },
-    "250108036": { m1: 10, m2: 7, end: 19 },
-    "250108037": { m1: 10, m2: 7, end: 28 },
-    "250108038": { m1: 5, m2: 7, end: 22 },
-    "250108039": { m1: 13, m2: 14, end: 37 },
-    "250108040": { m1: 7, m2: 11, end: 24 },
-    "250108041": { m1: 6, m2: 9, end: 30 },
-    "250108042": { m1: 8, m2: 10, end: 30 },
-    "250108043": { m1: 8, m2: 10, end: 23 },
-    "250108045": { m1: 7, m2: 9, end: 26 },
-    "250108046": { m1: 10, m2: 9, end: 23 },
-    "250108047": { m1: 5, m2: 8, end: 17 },
-    "250108048": { m1: 8, m2: 11, end: 38 },
-    "250108049": { m1: 9, m2: 7, end: 24 },
-    "250108050": { m1: 10, m2: 9, end: 26 },
-    "250108051": { m1: 8, m2: 8, end: 25 },
-    "250108052": { m1: 4, m2: 9, end: 23 },
-    "250108053": { m1: 8, m2: 8, end: 20 },
-    "250108054": { m1: 6, m2: 7, end: 21 },
-    "250108055": { m1: 7, m2: 9, end: 28 },
-    "250108056": { m1: 8, m2: 10, end: 29 },
-    "250108057": { m1: 2, m2: 6, end: 15 },
-    "250108059": { m1: 12, m2: 11, end: 37 },
-    "250108060": { m1: 11, m2: 12, end: 27 },
-    "250108061": { m1: 8, m2: 8, end: 23 },
-    "250108062": { m1: 10, m2: 7, end: 29 },
-    "250108063": { m1: 7, m2: 9, end: 23 },
-    "250108064": { m1: 9, m2: 8, end: 21 },
-    "250108065": { m1: 11, m2: 10, end: 45 },
-    "250108066": { m1: 11, m2: 14, end: 42 },
-    "250108067": { m1: 9, m2: 10, end: 26 },
-    "250108068": { m1: 8, m2: 7, end: 20 },
-    "250108069": { m1: 6, m2: 9, end: 20 },
-    "250108070": { m1: 11, m2: 13, end: 35 },
-    "250108071": { m1: 7, m2: 9, end: 28 },
-    "250108073": { m1: 8, m2: 8, end: 22 },
-    "250108074": { m1: 11, m2: 7, end: 29 },
-    "250108075": { m1: 5, m2: 7, end: 28 },
-    "250108076": { m1: 5, m2: 8, end: 16 },
-    "250108077": { m1: 10, m2: 8, end: 24 },
-    "250108078": { m1: 12, m2: 10, end: 22 },
-    "250108079": { m1: 8, m2: 8, end: 28 },
-    "250108080": { m1: 9, m2: 8, end: 20 },
-    "250108081": { m1: 10, m2: 9, end: 37 },
-    "250108082": { m1: 9, m2: 10, end: 29 }
-};
+/* ===== Constants ===== */
+const SUBJECTS = ["ICS", "ICE", "IET", "EC"];
+const MAX_TOTAL = 400;
 
-/*************************
- * IET MARKS (MID SEM = 0, 0)
- *************************/
-const IET = {
-    "230108017": { m1: 5, m2: 6, end: 5, ia: 14 },
-
-    "250108001": { m1: 12, m2: 14, end: 42, ia: 19 },
-    "250108002": { m1: 14, m2: 15, end: 39, ia: 19 },
-    "250108003": { m1: 14, m2: 14, end: 44, ia: 20 },
-    "250108004": { m1: 11, m2: 12, end: 30, ia: 18 },
-    "250108005": { m1: 10, m2: 14, end: 38, ia: 19 },
-    "250108006": { m1: 12, m2: 15, end: 44, ia: 19 },
-    "250108007": { m1: 12, m2: 15, end: 35, ia: 19 },
-    "250108008": { m1: 15, m2: 14, end: 38, ia: 19 },
-    "250108009": { m1: 11, m2: 14, end: 31, ia: 17 },
-    "250108010": { m1: 9, m2: 10, end: 31, ia: 20 },
-    "250108011": { m1: 10, m2: 14, end: 34, ia: 18 },
-    "250108012": { m1: 12, m2: 14, end: 44, ia: 20 },
-    "250108013": { m1: 5, m2: 6, end: 19, ia: 18 },
-    "250108014": { m1: 12, m2: 11, end: 37, ia: 19 },
-    "250108015": { m1: 14, m2: 14, end: 25, ia: 19 },
-    "250108016": { m1: 10, m2: 10, end: 23, ia: 18 },
-    "250108017": { m1: 5, m2: 6, end: 18, ia: 18 },
-    "250108018": { m1: 12, m2: 9, end: 29, ia: 20 },
-    "250108019": { m1: 14, m2: 12, end: 42, ia: 17 },
-    "250108020": { m1: 13, m2: 11, end: 41, ia: 18 },
-    "250108021": { m1: 12, m2: 13, end: 40, ia: 19 },
-    "250108022": { m1: 13, m2: 10, end: 38, ia: 19 },
-
-    "250108025": { m1: 13, m2: 11, end: 27, ia: 18 },
-    "250108026": { m1: 13, m2: 11, end: 41, ia: 19 },
-    "250108027": { m1: 12, m2: 10, end: 28, ia: 20 },
-    "250108028": { m1: 10, m2: 8, end: 25, ia: 17 },
-    "250108029": { m1: 12, m2: 8, end: 26, ia: 17 },
-    "250108030": { m1: 12, m2: 13, end: 42, ia: 19 },
-    "250108031": { m1: 14, m2: 11, end: 40, ia: 19 },
-    "250108032": { m1: 12, m2: 13, end: 32, ia: 17 },
-    "250108033": { m1: 12, m2: 11, end: 47, ia: 20 },
-
-    "250108035": { m1: 14, m2: 14, end: 42, ia: 20 },
-    "250108036": { m1: 9, m2: 4, end: 15, ia: 18 },
-    "250108037": { m1: 13, m2: 10, end: 38, ia: 19 },
-    "250108038": { m1: 11, m2: 7, end: 26, ia: 19 },
-    "250108039": { m1: 13, m2: 14, end: 46, ia: 18 },
-    "250108040": { m1: 13, m2: 12, end: 37, ia: 19 },
-    "250108041": { m1: 12, m2: 11, end: 40, ia: 19 },
-    "250108042": { m1: 12, m2: 12, end: 41, ia: 19 },
-    "250108043": { m1: 12, m2: 13, end: 28, ia: 19 },
-
-    "250108045": { m1: 13, m2: 11, end: 36, ia: 17 },
-    "250108046": { m1: 11, m2: 13, end: 27, ia: 17 },
-    "250108047": { m1: 8, m2: 8, end: 8, ia: 18 },
-    "250108048": { m1: 13, m2: 14, end: 43, ia: 20 },
-    "250108049": { m1: 10, m2: 10, end: 22, ia: 19 },
-    "250108050": { m1: 11, m2: 12, end: 34, ia: 19 },
-    "250108051": { m1: 11, m2: 14, end: 38, ia: 19 },
-    "250108052": { m1: 12, m2: 4, end: 20, ia: 18 },
-    "250108053": { m1: 9, m2: 14, end: 33, ia: 19 },
-    "250108054": { m1: 12, m2: 8, end: 36, ia: 18 },
-    "250108055": { m1: 11, m2: 12, end: 38, ia: 19 },
-    "250108056": { m1: 13, m2: 15, end: 34, ia: 19 },
-    "250108057": { m1: 3, m2: 3, end: 8, ia: 18 },
-
-    "250108059": { m1: 12, m2: 12, end: 34, ia: 18 },
-    "250108060": { m1: 13, m2: 15, end: 41, ia: 18 },
-    "250108061": { m1: 10, m2: 11, end: 22, ia: 18 },
-    "250108062": { m1: 13, m2: 11, end: 32, ia: 19 },
-    "250108063": { m1: 12, m2: 11, end: 40, ia: 18 },
-    "250108064": { m1: 13, m2: 13, end: 38, ia: 19 },
-    "250108065": { m1: 14, m2: 13, end: 47, ia: 19 },
-    "250108066": { m1: 10, m2: 12, end: 42, ia: 18 },
-    "250108067": { m1: 13, m2: 10, end: 33, ia: 19 },
-    "250108068": { m1: 11, m2: 9, end: 36, ia: 18 },
-    "250108069": { m1: 13, m2: 10, end: 29, ia: 18 },
-    "250108070": { m1: 11, m2: 15, end: 44, ia: 20 },
-
-    "250108071": { m1: 13, m2: 13, end: 24, ia: 20 },
-    "250108073": { m1: 12, m2: 14, end: 41, ia: 19 },
-    "250108074": { m1: 12, m2: 15, end: 37, ia: 19 },
-    "250108075": { m1: 12, m2: 11, end: 23, ia: 19 },
-    "250108076": { m1: 7, m2: 6, end: 20, ia: 18 },
-    "250108077": { m1: 10, m2: 13, end: 42, ia: 18 },
-    "250108078": { m1: 14, m2: 11, end: 27, ia: 18 },
-    "250108079": { m1: 10, m2: 12, end: 46, ia: 18 },
-    "250108080": { m1: 13, m2: 5, end: 16, ia: 19 },
-    "250108081": { m1: 13, m2: 13, end: 36, ia: 17 },
-    "250108082": { m1: 14, m2: 14, end: 34, ia: 19 }
-};
-
-
-/*************************
- * EC MARKS
- *************************/
-const EC = {
-    "230108017": { m1: 0, m2: 9, end: 0 },
-    "250108001": { m1: 14, m2: 14, end: 42 },
-    "250108002": { m1: 14, m2: 14, end: 43 },
-    "250108003": { m1: 14, m2: 14, end: 42 },
-    "250108004": { m1: 8, m2: 14, end: 29 },
-    "250108005": { m1: 10, m2: 15, end: 42 },
-    "250108006": { m1: 15, m2: 14, end: 42 },
-    "250108007": { m1: 10, m2: 13, end: 30 },
-    "250108008": { m1: 11, m2: 12, end: 33 },
-    "250108009": { m1: 10, m2: 14, end: 21 },
-    "250108010": { m1: 12, m2: 12, end: 28 },
-    "250108011": { m1: 10, m2: 14, end: 37 },
-    "250108012": { m1: 8, m2: 12, end: 37 },
-    "250108013": { m1: 6, m2: 10, end: 19 },
-    "250108014": { m1: 12, m2: 13, end: 32 },
-    "250108015": { m1: 11, m2: 13, end: 29 },
-    "250108016": { m1: 12, m2: 12, end: 26 },
-    "250108017": { m1: 4, m2: 11, end: 15 },
-    "250108018": { m1: 7, m2: 12, end: 21 },
-    "250108019": { m1: 9, m2: 15, end: 37 },
-    "250108020": { m1: 13, m2: 15, end: 39 },
-    "250108021": { m1: 13, m2: 14, end: 40 },
-    "250108022": { m1: 14, m2: 14, end: 38 },
-    "250108025": { m1: 12, m2: 13, end: 37 },
-    "250108026": { m1: 12, m2: 14, end: 44 },
-    "250108027": { m1: 9, m2: 12, end: 25 },
-    "250108028": { m1: 11, m2: 12, end: 23 },
-    "250108029": { m1: 8, m2: 13, end: 25 },
-    "250108030": { m1: 13, m2: 13, end: 35 },
-    "250108031": { m1: 13, m2: 13, end: 36 },
-    "250108032": { m1: 13, m2: 14, end: 37 },
-    "250108033": { m1: 12, m2: 14, end: 40 },
-    "250108035": { m1: 13, m2: 14, end: 42 },
-    "250108036": { m1: 5, m2: 11, end: 15 },
-    "250108037": { m1: 12, m2: 13, end: 38 },
-    "250108038": { m1: 7, m2: 13, end: 22 },
-    "250108039": { m1: 14, m2: 15, end: 44 },
-    "250108040": { m1: 14, m2: 14, end: 36 },
-    "250108041": { m1: 12, m2: 14, end: 39 },
-    "250108042": { m1: 12, m2: 13, end: 39 },
-    "250108043": { m1: 9, m2: 14, end: 29 },
-    "250108045": { m1: 11, m2: 13, end: 29 },
-    "250108046": { m1: 9, m2: 13, end: 31 },
-    "250108047": { m1: 7, m2: 12, end: 19 },
-    "250108048": { m1: 14, m2: 15, end: 37 },
-    "250108049": { m1: 9, m2: 14, end: 26 },
-    "250108050": { m1: 13, m2: 14, end: 33 },
-    "250108051": { m1: 12, m2: 13, end: 36 },
-    "250108052": { m1: 8, m2: 13, end: 19 },
-    "250108053": { m1: 9, m2: 14, end: 29 },
-    "250108054": { m1: 11, m2: 14, end: 24 },
-    "250108055": { m1: 8, m2: 14, end: 39 },
-    "250108056": { m1: 9, m2: 13, end: 35 },
-    "250108057": { m1: 4, m2: 13, end: 9 },
-    "250108059": { m1: 12, m2: 14, end: 44 },
-    "250108060": { m1: 12, m2: 14, end: 34 },
-    "250108061": { m1: 12, m2: 14, end: 37 },
-    "250108062": { m1: 11, m2: 14, end: 35 },
-    "250108063": { m1: 5, m2: 14, end: 31 },
-    "250108064": { m1: 12, m2: 13, end: 35 },
-    "250108065": { m1: 14, m2: 15, end: 41 },
-    "250108066": { m1: 11, m2: 14, end: 42 },
-    "250108067": { m1: 10, m2: 14, end: 32 },
-    "250108068": { m1: 10, m2: 14, end: 34 },
-    "250108069": { m1: 6, m2: 13, end: 33 },
-    "250108070": { m1: 10, m2: 13, end: 33 },
-    "250108071": { m1: 9, m2: 13, end: 27 },
-    "250108073": { m1: 10, m2: 14, end: 37 },
-    "250108074": { m1: 13, m2: 15, end: 38 },
-    "250108075": { m1: 10, m2: 13, end: 27 },
-    "250108076": { m1: 8, m2: 13, end: 22 },
-    "250108077": { m1: 12, m2: 12, end: 40 },
-    "250108078": { m1: 13, m2: 15, end: 29 },
-    "250108079": { m1: 11, m2: 14, end: 37 },
-    "250108080": { m1: 10, m2: 12, end: 27 },
-    "250108081": { m1: 10, m2: 15, end: 39 },
-    "250108082": { m1: 11, m2: 14, end: 27 }
-};
-
-
-/*************************
- * MERGE + PROCESS
- *************************/
-const SUBJECT_DATA = { ICS, ICE, IET, EC };
-
-const rolls = new Set(
-    Object.values(SUBJECT_DATA).flatMap(sub => Object.keys(sub))
-);
-
-const MAX_TOTAL = Object.values(SUBJECTS)
-    .reduce((sum, s) => sum + s.max, 0);
-
-const processedData = [...rolls].map(roll => {
-    let aggregate = 0;
-    const subjects = {};
-
-    for (let sub in SUBJECT_DATA) {
-        const d = SUBJECT_DATA[sub][roll];
-
-        const safe = d
-            ? {
-                m1: d.m1 ?? 0,
-                m2: d.m2 ?? 0,
-                end: d.end ?? 0,
-                ia: d.ia ?? 0
-            }
-            : { m1: "NA", m2: "NA", end: "NA", ia: "NA" };
-
-        const total =
-            typeof safe.m1 === "number"
-                ? safe.m1 + safe.m2 + safe.end + safe.ia
-                : 0;
-
-        subjects[sub] = { ...safe, total };
-        aggregate += total;
-    }
-
-    return {
-        roll,
-        name: ICS?.[roll]?.name || "NA",
-        subjects,
-        aggregate,
-        percentage: ((aggregate / MAX_TOTAL) * 100).toFixed(2)
-    };
-});
-
-/*************************
- * RANKING (TIE-SAFE)
- *************************/
-const rankedData = processedData
-    .sort((a, b) => b.aggregate - a.aggregate)
-    .map(s => ({
-        ...s,
-        rank: processedData.filter(x => x.aggregate > s.aggregate).length + 1
-    }));
-
-/*************************
- * SUBJECT-WISE RANK
- *************************/
-function getSubjectStats(roll, subject) {
-    const list = rankedData
-        .map(s => ({
-            roll: s.roll,
-            total: s.subjects[subject].total
-        }))
-        .sort((a, b) => b.total - a.total);
-
-    const me = list.find(x => x.roll === roll);
-    const rank = list.filter(x => x.total > me.total).length + 1;
-
-    return { rank, isTopper: rank === 1 };
+/* ===== Load Firestore Collection ===== */
+async function loadCollection(name) {
+    const snap = await getDocs(collection(db, name));
+    const data = {};
+    snap.forEach(d => data[d.id] = d.data());
+    return data;
 }
 
-/*************************
- * SEARCH HANDLER
- *************************/
-function handleSearch() {
-    const roll = document.getElementById("rollInput").value.trim();
-    const student = rankedData.find(s => s.roll === roll);
+/* ===== Load All Student Data & Calculate Aggregates ===== */
+async function loadAllData() {
+    const [ICS, ICE, IET, EC, students] = await Promise.all([
+        loadCollection("ICS"),
+        loadCollection("ICE"),
+        loadCollection("IET"),
+        loadCollection("EC"),
+        loadCollection("students")
+    ]);
 
-    if (!student) {
+    const rolls = new Set([
+        ...Object.keys(ICS),
+        ...Object.keys(ICE),
+        ...Object.keys(IET),
+        ...Object.keys(EC)
+    ]);
+
+    const data = [];
+
+    rolls.forEach(roll => {
+        let aggregate = 0;
+        const subjects = {};
+
+        SUBJECTS.forEach(sub => {
+            const src = sub === "ICS" ? ICS :
+                        sub === "ICE" ? ICE :
+                        sub === "IET" ? IET : EC;
+
+            const d = src[roll] || {};
+            const m1 = d.m1 || 0;
+            const m2 = d.m2 || 0;
+            const end = d.end || 0;
+            const ia = d.ia || 0;
+            const total = m1 + m2 + end + ia;
+
+            aggregate += total;
+            subjects[sub] = { m1, m2, end, ia, total };
+        });
+
+        data.push({
+            roll,
+            name: students[roll]?.name || "NA",
+            subjects,
+            aggregate
+        });
+    });
+
+    // Sort by aggregate and assign ranks
+    data.sort((a, b) => b.aggregate - a.aggregate);
+    data.forEach((s, i) => s.rank = i + 1);
+
+    window.rankedData = data;
+}
+
+/* ===== Search Student ===== */
+window.handleSearch = function () {
+    const roll = document.getElementById("rollInput").value.trim();
+    const s = window.rankedData.find(x => x.roll === roll);
+
+    if (!s) {
         alert("Roll number not found");
         return;
     }
 
-    displayResults(student);
-}
-
-/*************************
- * DISPLAY RESULTS
- *************************/
-function displayResults(s) {
+    window.currentStudent = s;
     document.getElementById("resultDisplay").style.display = "block";
 
     document.getElementById("studentName").innerText = s.name;
     document.getElementById("studentRoll").innerText = `Roll No: ${s.roll}`;
-    document.getElementById("studentRank").innerText =
-        s.rank === 1 ? "1 🏆" : s.rank;
-
+    document.getElementById("studentRank").innerText = s.rank;
     document.getElementById("totalMarks").innerText = s.aggregate;
     document.getElementById("maxMarks").innerText = ` / ${MAX_TOTAL}`;
 
+    // Populate Subject-wise Performance
     const grid = document.getElementById("subjectGrid");
     grid.innerHTML = "";
 
     for (let sub in s.subjects) {
         const m = s.subjects[sub];
-        const stats = getSubjectStats(s.roll, sub);
-
         grid.innerHTML += `
             <div class="subject-card">
-                <div class="subject-header">
-                    <h4>${sub}</h4>
-                    <div class="badge-group">
-                        ${stats.isTopper ? `<span class="topper-badge">🏆 TOPPER</span>` : ""}
-                        <span class="sub-rank">Rank #${stats.rank}</span>
-                    </div>
-                </div>
-
                 <div class="row"><span>Mid Sem 1</span><span>${m.m1}</span></div>
                 <div class="row"><span>Mid Sem 2</span><span>${m.m2}</span></div>
                 <div class="row"><span>End Sem</span><span>${m.end}</span></div>
                 <div class="row"><span>Internal</span><span>${m.ia}</span></div>
-
-                <div class="row total">
-                    <span>Total</span>
-                    <span>${m.total} / ${SUBJECTS[sub].max}</span>
-                </div>
+                <div class="row total"><span>Total</span><span>${m.total} / 100</span></div>
             </div>
         `;
     }
 
-    const higher = rankedData.filter(x => x.rank < s.rank);
+    // Populate Higher Rank Students
     const list = document.getElementById("higherRankersList");
+    list.innerHTML = "";
+    window.rankedData
+        .filter(x => x.rank < s.rank)
+        .forEach(x => {
+            list.innerHTML += `<div class="badge">#${x.name}</div>`;
+        });
+};
 
-    list.innerHTML = higher.length
-        ? higher.map(st => `<span class="badge">${st.name}</span>`).join("")
-        : `<span class="badge" style="border-color:var(--accent);color:var(--accent)">
-            You are Rank 1 🎉
-          </span>`;
-}
+/* ===== Download PDF ===== */
+window.downloadPDF = function () {
+    const s = window.currentStudent;
+    if (!s) return;
 
-/*************************
- * ENTER KEY SUPPORT
- *************************/
-document.getElementById("rollInput")
-    .addEventListener("keydown", e => {
-        if (e.key === "Enter") handleSearch();
-    });
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    let y = 20;
 
+    // University Header
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(16);
+    doc.text("HARCOURT BUTLER TECHNICAL UNIVERSITY, KANPUR", 105, y, { align: "center" });
 
+    y += 8;
+    doc.setFontSize(12);
+    doc.text("Academic Session 2025–26 | Information Technology (IT)", 105, y, { align: "center" });
+
+    y += 6;
+    doc.setLineWidth(0.5);
+    doc.line(20, y, 190, y);
+    y += 10;
+
+    // Student Details
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(11);
+    doc.text(`Name: ${s.name}`, 20, y);
+    doc.text(`Roll No: ${s.roll}`, 130, y);
+    y += 7;
+    doc.text(`Rank: ${s.rank}`, 20, y);
+    doc.text(`Total Marks: ${s.aggregate} / ${MAX_TOTAL}`, 130, y);
+    y += 10;
+
+    // Table Header
+    doc.setFont("helvetica", "bold");
+    doc.text("Subject", 20, y);
+    doc.text("M1", 65, y);
+    doc.text("M2", 85, y);
+    doc.text("End", 105, y);
+    doc.text("IA", 130, y);
+    doc.text("Total", 155, y);
+
+    y += 4;
+    doc.line(20, y, 190, y);
+    y += 6;
+
+    // Subject Rows
+    doc.setFont("helvetica", "normal");
+    for (let sub in s.subjects) {
+        const m = s.subjects[sub];
+        doc.text(sub, 20, y);
+        doc.text(String(m.m1), 65, y);
+        doc.text(String(m.m2), 85, y);
+        doc.text(String(m.end), 105, y);
+        doc.text(String(m.ia), 130, y);
+        doc.text(String(m.total), 155, y);
+
+        y += 7;
+        if (y > 270) {
+            doc.addPage();
+            y = 20;
+        }
+    }
+
+    // Footer
+    y += 10;
+    doc.setLineWidth(0.3);
+    doc.line(20, y, 190, y);
+    y += 7;
+    doc.setFontSize(9);
+    doc.text("This is a system-generated result card for academic reference only.", 105, y, { align: "center" });
+
+    doc.save(`${s.roll}_HBTU_IT_2025-26_Result.pdf`);
+};
+
+/* ===== Initialize Data ===== */
+loadAllData();

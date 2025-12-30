@@ -7,11 +7,13 @@
     <title>Student Result Portal</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 
 <body>
-
     <div class="page">
+
+        <!-- Header Section -->
         <header class="top-section">
             <h1>Student Result Portal</h1>
             <p>Search your roll number to view detailed performance & ranking</p>
@@ -22,7 +24,10 @@
             </div>
         </header>
 
+        <!-- Main Result Display -->
         <main id="resultDisplay" class="results" style="display:none">
+
+            <!-- Student Card -->
             <section class="card student-card">
                 <div class="student-info">
                     <h2 id="studentName"></h2>
@@ -36,25 +41,32 @@
                     </div>
                 </div>
 
-                <div class="rank-circle">
-                    <span>Rank</span>
-                    <strong id="studentRank"></strong>
+                <div class="rank-section">
+                    <div class="rank-circle">
+                        <span>Rank</span>
+                        <strong id="studentRank"></strong>
+                    </div>
+                    <button onclick="downloadPDF()" class="download-btn">Download PDF</button>
                 </div>
             </section>
 
+            <!-- Subject-wise Performance -->
             <section>
                 <h3 class="section-title">Subject-wise Performance</h3>
                 <div id="subjectGrid" class="subjects-grid"></div>
             </section>
 
+            <!-- Higher Rank Students -->
             <section class="card">
                 <h3>Students Ranked Higher</h3>
                 <div id="higherRankersList" class="ranker-list"></div>
             </section>
+
         </main>
     </div>
 
-    <script src="app.js"></script>
+    <!-- JS File -->
+    <script type="module" src="app.js"></script>
 </body>
 
 </html>

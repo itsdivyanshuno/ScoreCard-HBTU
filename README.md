@@ -1,99 +1,86 @@
 <div align="center">
 
-# 🎓 ScoreCard – HBTU IT Branch
-### *Semester 1 Result Analytics Portal*
+# 🏆 ScoreCard: HBTU IT Analytics
+**The definitive semester performance portal for HBTU Information Technology.**
 
-  <img src="https://img.shields.io/badge/Live_Demo-blue?style=for-the-badge&logo=googlechrome&logoColor=white" height="35">
-  <img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" height="35">
-  <img src="https://img.shields.io/badge/GitHub_Pages-222222?style=for-the-badge&logo=github" height="35">
+[✨ Live Demo](https://itsdivyanshuno.github.io/ScoreCard-HBTU/) • [📂 Source Code](https://github.com/itsdivyanshuno/ScoreCard-HBTU) • [🛠️ Admin Panel](https://itsdivyanshuno.github.io/ScoreCard-HBTU/admin.html)
 
----
+<br />
 
-### 🚀 [View Live Demo](https://itsdivyanshuno.github.io/ScoreCard-HBTU/) | 🐛 [Report Bug](https://github.com/itsdivyanshuno/ScoreCard-HBTU/issues) | 💡 [Request Feature](https://github.com/itsdivyanshuno/ScoreCard-HBTU/issues)
-
----
-
-**A high-performance result management system for HBTU students.** *Eliminating manual rank calculation through automated, secure, and client-side processing.*
-
-<img src="https://raw.githubusercontent.com/itsdivyanshuno/ScoreCard-HBTU/main/assets/preview.png" alt="Project Preview" width="800" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
-*(Replace the URL above with a real screenshot of your app once uploaded to GitHub)*
+[![Website Status](https://img.shields.io/website?down_color=red&down_message=offline&up_color=00ff00&up_message=online&url=https%3A%2F%2Fitsdivyanshuno.github.io%2FScoreCard-HBTU%2F&style=for-the-badge)](https://itsdivyanshuno.github.io/ScoreCard-HBTU/)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=for-the-badge)](https://github.com/itsdivyanshuno/ScoreCard-HBTU/graphs/commit-activity)
+[![Stars](https://img.shields.io/github/stars/itsdivyanshuno/ScoreCard-HBTU?style=for-the-badge&color=gold)](https://github.com/itsdivyanshuno/ScoreCard-HBTU/stargazers)
 
 </div>
 
-## 📖 Overview
-ScoreCard was engineered to solve the friction of traditional result viewing. Instead of scrolling through massive, static PDFs, students can instantly search, analyze their rank, and export professional performance reports. 
+---
 
-## ✨ Key Features
-| Feature | Description |
-| :--- | :--- |
-| 🔍 **Instant Search** | Search by Roll Number with sub-second latency. |
-| 🏆 **Smart Ranking** | Custom logic for tie-safe ranking and topper identification. |
-| 📊 **Analytics** | Detailed subject-wise breakdown vs. Aggregate performance. |
-| 📄 **PDF Engine** | One-click "Download Result" using client-side PDF generation. |
-| 🔐 **Admin Suite** | Firebase Auth-protected panel to manage marks and dark mode. |
+## 📌 Project Vision
+Managing academic records manually is slow and prone to errors. **ScoreCard** is a serverless, client-side application designed to provide IT students at HBTU with instant access to their Semester 1 results, automated ranking, and professional PDF exports.
+
+### 💎 Elite Features
+* 🚀 **Turbo-Search:** Instant result retrieval via Roll Number.
+* 🥇 **Smart Ranking Engine:** Sophisticated logic to handle scores and ties accurately.
+* 📄 **Dynamic PDF Export:** Generate high-quality result cards directly in the browser.
+* 🛡️ **Firebase Core:** Real-time data sync with secure Firestore integration.
+* 🌓 **Admin Dashboard:** Full control over marks with a built-in Dark Mode toggle.
 
 ---
 
-## 🛠 Tech Stack
+## 🛠️ Technology Stack
 
 <div align="center">
 
-| Frontend | Database | Deployment |
+| Core Logic | Database & Auth | Deployment |
 | :---: | :---: | :---: |
-| <img src="https://skillicons.dev/icons?i=html,css,js" height="45"> | <img src="https://skillicons.dev/icons?i=firebase" height="45"> | <img src="https://skillicons.dev/icons?i=github" height="45"> |
+| <img src="https://skillicons.dev/icons?i=js,html,css" height="50" /> | <img src="https://skillicons.dev/icons?i=firebase" height="50" /> | <img src="https://skillicons.dev/icons?i=github,vercel" height="50" /> |
+
+**Built using clean, modular Vanilla JavaScript and NoSQL Architecture.**
 
 </div>
 
 ---
 
-## ⚙️ How It Works
-1. **Serverless Data:** Data is fetched from **Firestore** via optimized NoSQL queries.
-2. **Logic Engine:** The `app.js` file processes scores, calculates the mean, and applies a sorting algorithm to determine ranks in real-time.
-3. **PDF Generation:** Utilizes client-side libraries to convert the DOM result view into a clean A4 PDF layout.
+## 📊 System Architecture
 
----
+> [!IMPORTANT]
+> This project operates on a **Serverless Architecture**. All data is fetched via the Firebase SDK, and the heavy lifting (ranking and PDF generation) is handled on the client's device to ensure maximum speed.
 
-## 📁 Project Structure
 ```text
 ScoreCard-HBTU/
-├── index.html        # Main Search & Student Portal
-├── admin.html        # Secure Dashboard for data entry
-├── app.js            # Ranking logic & Data fetching
-├── admin.js          # Auth & Database Write operations
-└── style.css         # Professional UI styling
-🚀 Getting Started
-Clone the Repo
-
+├── 🌐 index.html      # Student-facing search portal
+├── 🔐 admin.html      # Protected management interface
+├── ⚡ app.js          # The "Brain": Ranking & Analytics
+├── 🛠 admin.js        # Data management & Auth logic
+└── 🎨 style.css       # Premium UI design system
+🚀 Installation & Local Setup
 Bash
 
+# 1. Clone the repository
 git clone [https://github.com/itsdivyanshuno/ScoreCard-HBTU.git](https://github.com/itsdivyanshuno/ScoreCard-HBTU.git)
-Firebase Setup
 
-Create a project on Firebase Console.
+# 2. Navigate to project folder
+cd ScoreCard-HBTU
 
-Add your apiKey and projectId to app.js.
+# 3. Setup Environment
+# Replace your Firebase Config in app.js and admin.js
 
-Launch
+# 4. Run the app
+# Open index.html in any modern browser
+👤 Developer Profile
+<table align="left"> <tr> <td> <img src="https://www.google.com/search?q=https://github.com/itsdivyanshuno.png" width="120px;" style="border-radius:50%;" alt="Divyansh Shukla"/> </td> <td> <b>Divyansh Shukla</b>
 
-Open index.html with Live Server.
 
-👤 Author
-<div align="left"> <img src="https://www.google.com/search?q=https://github.com/itsdivyanshuno.png" width="100" style="border-radius: 50%; float: left; margin-right: 20px;">
+<i>IT Branch, HBTU (Class of 2028)</i>
 
-Divyansh Shukla IT Branch, HBTU (Class of 2028) <a href="https://www.google.com/search?q=https://github.com/itsdivyanshuno"><img src="https://www.google.com/search?q=https://img.shields.io/badge/GitHub-100000%3Fstyle%3Dfor-the-badge%26logo%3Dgithub%26logoColor%3Dwhite"></a> <a href="INSERT_YOUR_LINKEDIN_URL_HERE"><img src="https://www.google.com/search?q=https://img.shields.io/badge/LinkedIn-0077B5%3Fstyle%3Dfor-the-badge%26logo%3Dlinkedin%26logoColor%3Dwhite"></a>
+
+<a href="https://www.google.com/search?q=https://github.com/itsdivyanshuno"> <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white" /> </a> <a href="YOUR_LINKEDIN_URL_HERE"> <img src="https://www.google.com/search?q=https://img.shields.io/badge/LinkedIn-0077B5%3Fstyle%3Dflat%26logo%3Dlinkedin%26logoColor%3Dwhite" /> </a> </td> </tr> </table>
+
+<br clear="both" /> <br />
+
+<div align="center">
+
+Support this project
+If you find this project useful for the IT Branch, consider giving it a ⭐!
 
 </div>
-
-<br clear="both">
-
-<div align="center"> ⭐ <b>If you find this project useful, please give it a star!</b> ⭐ </div>
-
-
-### Key Improvements Made:
-
-1.  **Icon Size:** Used `skillicons.dev` and `height="35"` or `45` to make the tech stack and badges look significantly larger and more modern.
-2.  **Visual Break:** Added a horizontal line (`---`) and a placeholder for a **Large Preview Image**.
-3.  **Author Section:** Added a circular profile picture (it pulls automatically from your GitHub) and large social media buttons.
-4.  **Alignment:** Balanced the use of `center` for branding and `left` for technical details to ensure readability.
-
-**Would you like me to help you generate a custom "Banner Image" for the top of this READM

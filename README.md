@@ -1,52 +1,36 @@
 <div align="center">
 
-# 🎓 ScoreCard – HBTU IT Branch (Semester 1)
+# 🎓 ScoreCard – HBTU IT Branch
+### *Semester 1 Result Analytics Portal*
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-blue?style=for-the-badge)](https://itsdivyanshuno.github.io/ScoreCard-HBTU/)  
-[![Firebase](https://img.shields.io/badge/Firebase-Firestore-orange?style=for-the-badge)](#)  
-[![License](https://img.shields.io/badge/License-Academic-lightgrey?style=for-the-badge)](#)  
+  <img src="https://img.shields.io/badge/Live_Demo-blue?style=for-the-badge&logo=googlechrome&logoColor=white" height="35">
+  <img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" height="35">
+  <img src="https://img.shields.io/badge/GitHub_Pages-222222?style=for-the-badge&logo=github" height="35">
 
-A **modern, interactive web portal** for viewing Semester 1 results of HBTU IT students.  
-Experience **fast, client-side result processing**, detailed subject analysis, ranking, and PDF export.
+---
+
+### 🚀 [View Live Demo](https://itsdivyanshuno.github.io/ScoreCard-HBTU/) | 🐛 [Report Bug](https://github.com/itsdivyanshuno/ScoreCard-HBTU/issues) | 💡 [Request Feature](https://github.com/itsdivyanshuno/ScoreCard-HBTU/issues)
+
+---
+
+**A high-performance result management system for HBTU students.** *Eliminating manual rank calculation through automated, secure, and client-side processing.*
+
+<img src="https://raw.githubusercontent.com/itsdivyanshuno/ScoreCard-HBTU/main/assets/preview.png" alt="Project Preview" width="800" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+*(Replace the URL above with a real screenshot of your app once uploaded to GitHub)*
 
 </div>
 
----
-
-## 📌 Why This Project?
-
-ScoreCard was developed after my **first end-semester at HBTU** to solve common issues:  
-
-- Students often struggle to **track their performance** across subjects.  
-- Manual rank calculation is error-prone and time-consuming.  
-- Admins need a **simple interface** to update marks securely.  
-
-**ScoreCard** addresses these by combining **clean UI**, **accurate ranking**, and **PDF export**, fully hosted on **GitHub Pages** using **Firebase Firestore**.
-
----
-
-## 💡 How It Works
-
-1. **Data Source:** Marks are stored in Firebase Firestore collections for each subject.  
-2. **Client-Side Processing:** JS fetches all student data, calculates total marks, and ranks students.  
-3. **Search & Display:** Students search by roll number to view **subject-wise performance**, **aggregate**, and **rank**.  
-4. **PDF Export:** Results can be downloaded as a **professional PDF**.  
-5. **Admin Panel:** Secure login using Firebase Auth, edit marks, and toggle dark mode.  
-
----
+## 📖 Overview
+ScoreCard was engineered to solve the friction of traditional result viewing. Instead of scrolling through massive, static PDFs, students can instantly search, analyze their rank, and export professional performance reports. 
 
 ## ✨ Key Features
-
 | Feature | Description |
-|---------|-------------|
-| 🔍 **Search by Roll Number** | Quickly find results for any student |
-| 🏆 **Overall & Subject Ranking** | Tie-safe ranking and topper highlights |
-| 📊 **Total & Percentage** | Clear marks breakdown for each subject |
-| ⚠️ **Missing Data Handling** | Displays `NA` if a mark is missing |
-| 💾 **Admin Dashboard** | Firebase-secured interface to edit marks |
-| 🌙 **Dark Mode** | Admin can switch to dark theme for comfort |
-| 📄 **PDF Export** | Download result card for offline use |
-| ⚡ **Fast Processing** | Entirely client-side with zero backend delays |
+| :--- | :--- |
+| 🔍 **Instant Search** | Search by Roll Number with sub-second latency. |
+| 🏆 **Smart Ranking** | Custom logic for tie-safe ranking and topper identification. |
+| 📊 **Analytics** | Detailed subject-wise breakdown vs. Aggregate performance. |
+| 📄 **PDF Engine** | One-click "Download Result" using client-side PDF generation. |
+| 🔐 **Admin Suite** | Firebase Auth-protected panel to manage marks and dark mode. |
 
 ---
 
@@ -54,67 +38,62 @@ ScoreCard was developed after my **first end-semester at HBTU** to solve common 
 
 <div align="center">
 
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white) 
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white) 
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black) 
-![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black)  
-![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-181717?style=flat-square&logo=github&logoColor=white)
+| Frontend | Database | Deployment |
+| :---: | :---: | :---: |
+| <img src="https://skillicons.dev/icons?i=html,css,js" height="45"> | <img src="https://skillicons.dev/icons?i=firebase" height="45"> | <img src="https://skillicons.dev/icons?i=github" height="45"> |
 
 </div>
 
 ---
 
-## 📁 Project Structure
+## ⚙️ How It Works
+1. **Serverless Data:** Data is fetched from **Firestore** via optimized NoSQL queries.
+2. **Logic Engine:** The `app.js` file processes scores, calculates the mean, and applies a sorting algorithm to determine ranks in real-time.
+3. **PDF Generation:** Utilizes client-side libraries to convert the DOM result view into a clean A4 PDF layout.
 
+---
+
+## 📁 Project Structure
 ```text
 ScoreCard-HBTU/
-│
-├── index.html        # Student portal UI with search & result display
-├── admin.html        # Admin dashboard for editing marks & dark mode
-├── style.css         # Shared styling for student and admin UI
-├── app.js            # Student-side JS: ranking, PDF generation
-├── admin.js          # Admin JS: authentication & mark updates
-├── data/             # Optional local JSON backup (for offline testing)
-│   ├── ICS.json
-│   ├── ICE.json
-│   ├── IET.json
-│   └── EC.json
-└── README.md         # Project documentation
-🧠 Learning Outcomes
-✅ Handling real academic datasets
+├── index.html        # Main Search & Student Portal
+├── admin.html        # Secure Dashboard for data entry
+├── app.js            # Ranking logic & Data fetching
+├── admin.js          # Auth & Database Write operations
+└── style.css         # Professional UI styling
+🚀 Getting Started
+Clone the Repo
 
-✅ Designing tie-safe ranking algorithms
+Bash
 
-✅ Writing modular, maintainable JS
+git clone [https://github.com/itsdivyanshuno/ScoreCard-HBTU.git](https://github.com/itsdivyanshuno/ScoreCard-HBTU.git)
+Firebase Setup
 
-✅ Dynamic DOM manipulation & UI rendering
+Create a project on Firebase Console.
 
-✅ Deploying static websites with GitHub Pages
+Add your apiKey and projectId to app.js.
 
-✅ Integrating Firebase Firestore & Auth
+Launch
 
-✅ Generating dynamic PDFs from client-side JS
-
-🚀 Future Improvements
-📈 Add interactive charts for performance analysis
-
-🌙 Dark mode for student portal
-
-📤 Bulk CSV/PDF uploads for marks
-
-🔔 Notifications when results are updated
-
-⚡ Optimize large dataset performance
-
-✨ Enhance UI animations & interactivity
-
-⚠️ Disclaimer
-This project is strictly for educational purposes.
-All data belongs to the respective students and institution.
+Open index.html with Live Server.
 
 👤 Author
-Divyansh Shukla
-IT Branch, HBTU
-First Semester Project
+<div align="left"> <img src="https://www.google.com/search?q=https://github.com/itsdivyanshuno.png" width="100" style="border-radius: 50%; float: left; margin-right: 20px;">
 
-<div align="center"> ⭐ If you like this project, give it a star on GitHub! </div> ```
+Divyansh Shukla IT Branch, HBTU (Class of 2028) <a href="https://www.google.com/search?q=https://github.com/itsdivyanshuno"><img src="https://www.google.com/search?q=https://img.shields.io/badge/GitHub-100000%3Fstyle%3Dfor-the-badge%26logo%3Dgithub%26logoColor%3Dwhite"></a> <a href="INSERT_YOUR_LINKEDIN_URL_HERE"><img src="https://www.google.com/search?q=https://img.shields.io/badge/LinkedIn-0077B5%3Fstyle%3Dfor-the-badge%26logo%3Dlinkedin%26logoColor%3Dwhite"></a>
+
+</div>
+
+<br clear="both">
+
+<div align="center"> ⭐ <b>If you find this project useful, please give it a star!</b> ⭐ </div>
+
+
+### Key Improvements Made:
+
+1.  **Icon Size:** Used `skillicons.dev` and `height="35"` or `45` to make the tech stack and badges look significantly larger and more modern.
+2.  **Visual Break:** Added a horizontal line (`---`) and a placeholder for a **Large Preview Image**.
+3.  **Author Section:** Added a circular profile picture (it pulls automatically from your GitHub) and large social media buttons.
+4.  **Alignment:** Balanced the use of `center` for branding and `left` for technical details to ensure readability.
+
+**Would you like me to help you generate a custom "Banner Image" for the top of this READM
